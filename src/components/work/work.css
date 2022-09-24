@@ -1,24 +1,24 @@
-.testimonial__container {
+.work__container {
   width: 750px;
 }
-.testimonial__card {
+.work__card {
   background-color: var(--container-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1.5rem 2rem;
   border-radius: 1.5rem;
   margin-bottom: var(--mb-3);
 }
-.testimonial__img {
+.work__img {
   width: 60px;
   border-radius: 3rem;
   margin-bottom: var(--mb-1);
 }
-.testimonial__name {
+.work__name {
   font-size: var(--normal-font-size);
   font-weight: var(--font-medium);
   margin-bottom: var(--mb-0-25);
 }
-.testimonial__description {
+.work__description {
   font-size: var(--small-font-size);
 }
 
@@ -32,10 +32,10 @@
 }
 
 @media screen and (max-width: 992px) {
-  .testimonial__container {
+  .work__container {
     width: initial;
   }
-  .testimonial__card {
+  .work__card {
     padding: 1.25rem 1.5rem;
   }
 }

@@ -7,8 +7,8 @@ const Qualification = () => {
     setToggleState(index);
   };
   return (
-    <section className="qualification section">
-      <h2 className="section__title">Qualification</h2>
+    <section className="qualification section" id="portfolio">
+      <h2 className="section__title">Biography</h2>
       <span className="section__subtitle">My Personal Journey</span>
       <div className="qualification__container container">
         <div className="qualification__tabs">
@@ -99,7 +99,7 @@ const Qualification = () => {
           >
             <div className="qualification__data">
               <div>
-                <h3 className="qualification__title">Flutter Developer</h3>
+                <h3 className="qualification__title">Flutter</h3>
                 <span className="qualification__subtitle">Intermediate</span>
                 <div className="qualification__calender">
                   <i className="uil uil-calendar-alt">4 Months</i>
