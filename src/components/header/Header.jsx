@@ -79,7 +79,7 @@ const Header = () => {
                   activeNav === "#work" ? "nav__link active-link" : "nav__link"
                 }
               >
-                <i className="uil uil-scenery nav__icon"></i>Work
+                <i className="uil uil-briefcase-alt nav__icon"></i>Work
               </a>
             </li>
             <li className="nav__item">

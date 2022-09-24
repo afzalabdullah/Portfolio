@@ -31,7 +31,7 @@
 
 @media screen and (max-width: 768px) {
   .scrollup {
-    bottom: 4rem;
+    bottom: 6rem;
   }
 }
 @media screen and (max-width: 350px) {
