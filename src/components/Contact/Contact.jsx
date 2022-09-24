@@ -63,7 +63,7 @@ const Contact = () => {
                 Abdullah <br />
               </span>
               <a
-                href="www.linkedin.com/in/abdullah-gujjar-96b962208/"
+                href="https://www.linkedin.com/in/abdullah-gujjar-96b962208/"
                 target="_blank"
                 className="contact__button"
               >
