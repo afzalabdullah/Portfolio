@@ -21,6 +21,15 @@
 .work__description {
   font-size: var(--small-font-size);
 }
+.download__link {
+  color: cornflowerblue;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-normal);
+  font-family: var(--body-font);
+}
+.download__link:hover {
+  color: darkblue;
+}
 
 /* Swiper Class */
 
