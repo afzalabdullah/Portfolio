@@ -66,6 +66,7 @@ const Contact = () => {
                 href="https://www.linkedin.com/in/abdullah-gujjar-96b962208/"
                 target="_blank"
                 className="contact__button"
+                rel="noreferrer"
               >
                 Write me{" "}
                 <i className="bx bx-right-arrow-alt contact__button-icon"></i>
