@@ -1,6 +1,7 @@
 import Image1 from "../../assets/testimonial1.png";
 import Image2 from "../../assets/testimonial2.png";
 import Image3 from "../../assets/testimonial3.png";
+import Image4 from "../../assets/testimonial4.png";
 
 export const Data = [
   {
@@ -27,4 +28,13 @@ export const Data = [
     description:
       "It will add, subtract, multiply, and divide. Some also do square roots, It is very Fantastic",
   },
+  {
+    id: 4,
+    image: Image4,
+    link: "https://drive.google.com/file/d/10nuhvuaADxpIjlrr2Lcby36fo5-D1WB3/view?usp=sharing",
+    title: "Zoome ",
+    description:
+      "It is a video conferencing platform, and allows users to connect online for video conference meetings, webinars and live chat.",
+  },
+
 ];
