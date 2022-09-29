@@ -31,7 +31,7 @@ export const Data = [
   {
     id: 4,
     image: Image4,
-    link: "https://drive.google.com/file/d/10nuhvuaADxpIjlrr2Lcby36fo5-D1WB3/view?usp=sharing",
+    link: "https://drive.google.com/file/d/12p97Wn1-mUxp4A22AfEf_AOFonffZ1V-/view?usp=sharing",
     title: "Zoome ",
     description:
       "It is a video conferencing platform, and allows users to connect online for video conference meetings, webinars and live chat.",
