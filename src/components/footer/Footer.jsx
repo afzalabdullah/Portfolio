@@ -41,7 +41,7 @@ const Footer = () => {
             <i className="bx bxl-facebook"></i>
           </a>
           <a
-            href="https://www.linkedin.com/in/abdullah-gujjar-96b962208/"
+            href="https://www.linkedin.com/in/abdullah-afzal-96b962208/"
             className="footer__social-link"
             target="_blank"
             rel="noreferrer"

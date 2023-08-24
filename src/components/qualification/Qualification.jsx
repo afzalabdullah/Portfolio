@@ -99,8 +99,8 @@ const Qualification = () => {
           >
             <div className="qualification__data">
               <div>
-                <h3 className="qualification__title">Flutter</h3>
-                <span className="qualification__subtitle">Intermediate</span>
+                <h3 className="qualification__title">TPL Trakker</h3>
+                <span className="qualification__subtitle">Trainee Engineer</span>
                 <div className="qualification__calender">
                   <i className="uil uil-calendar-alt">4 Months</i>
                 </div>
@@ -118,8 +118,8 @@ const Qualification = () => {
                 <span className="qualification__line"></span>
               </div>
               <div>
-                <h3 className="qualification__title">React</h3>
-                <span className="qualification__subtitle">Basics</span>
+                <h3 className="qualification__title">Pakistan Aeronautical Complex</h3>
+                {/* <span className="qualification__subtitle">Basics</span> */}
                 <div className="qualification__calender">
                   <i className="uil uil-calendar-alt">1 Month</i>
                 </div>
@@ -128,10 +128,10 @@ const Qualification = () => {
 
             <div className="qualification__data">
               <div>
-                <h3 className="qualification__title">HTML-5/CSS-3</h3>
-                <span className="qualification__subtitle">Intermediate</span>
+                <h3 className="qualification__title">Reasearch and Development </h3>
+                {/* <span className="qualification__subtitle">Intermediate</span> */}
                 <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt">More than 6 Months</i>
+                  <i className="uil uil-calendar-alt">More than 3 Months</i>
                 </div>
               </div>
               <div>
@@ -147,8 +147,8 @@ const Qualification = () => {
                 <span className="qualification__line"></span>
               </div>
               <div>
-                <h3 className="qualification__title">ASP.NET</h3>
-                <span className="qualification__subtitle">Intermediate</span>
+                <h3 className="qualification__title">SKIMS</h3>
+                {/* <span className="qualification__subtitle">Intermediate</span> */}
                 <div className="qualification__calender">
                   <i className="uil uil-calendar-alt">Less than 6-Months</i>
                 </div>
