@@ -51,7 +51,7 @@ const Qualification = () => {
                   Software Engineering
                 </span>
                 <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"> 2020 - Present</i>
+                  <i className="uil uil-calendar-alt"> 2020 - 2024</i>
                 </div>
               </div>
               <div>
