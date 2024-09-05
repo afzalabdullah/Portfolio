@@ -1,3 +1,4 @@
+// App.jsx
 import React from "react";
 import "./App.css";
 import Header from "./components/header/Header";
@@ -9,6 +10,7 @@ import Contact from "./components/Contact/Contact";
 import Footer from "./components/footer/Footer";
 import Scrollup from "./components/scrollup/Scrollup";
 import Work from "./components/work/Work";
+import ChatBot from "./components/home/ChatBot"; // Import ChatBot
 
 const App = () => {
   return (
@@ -24,7 +26,9 @@ const App = () => {
       </main>
       <Footer />
       <Scrollup />
+      <ChatBot /> 
     </>
   );
 };
+
 export default App;

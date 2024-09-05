@@ -25,23 +25,16 @@ const Footer = () => {
 
         <div className="footer__social">
           <a
-            href="https://www.instagram.com/"
+            href="https://github.com/afzalabdullah/"
             className="footer__social-link"
             target="_blank"
             rel="noreferrer"
           >
-            <i className="bx bxl-instagram"></i>
+            <i className="bx bxl-github"></i>
           </a>
+         
           <a
-            href="https://web.facebook.com/profile.php?id=100004666815385"
-            className="footer__social-link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <i className="bx bxl-facebook"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/abdullah-afzal-96b962208/"
+            href="https://www.linkedin.com/in/engr-abdullah-afzal-96b962208/"
             className="footer__social-link"
             target="_blank"
             rel="noreferrer"
@@ -50,7 +43,7 @@ const Footer = () => {
           </a>
         </div>
         <span className="footer__copy">
-          Copyright © 2022. All rights reserved. Developed by Abdullah
+          Copyright © 2024. All rights reserved. Developed by Abdullah
         </span>
       </div>
     </footer>

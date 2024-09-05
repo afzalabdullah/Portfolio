@@ -9,13 +9,23 @@ const Contact = () => {
     e.preventDefault();
 
     emailjs.sendForm(
-      "service_ozatuvs",
+      "service_pdf9ymo",
       "template_vhduyv3",
       form.current,
-      "KBn7SyspLyKOWxMbH"
-    );
+      "vCwOaTQBBdQFTgP5b"
+    )
+    .then((result) => {
+      alert("Email sent successfully!");
+      console.log(result.text);
+    })
+    .catch((error) => {
+      alert("Failed to send email. Please try again.");
+      console.log(error.text);
+    });
+
     e.target.reset();
   };
+
   return (
     <section className="contact section" id="contact">
       <h2 className="section__title">Get In Touch</h2>
@@ -77,7 +87,7 @@ const Contact = () => {
 
         <div className="contact__content">
           <h3 className="contact__title">Write me your Projects</h3>
-          <form form ref={form} onSubmit={sendEmail} className="contact__form">
+          <form ref={form} onSubmit={sendEmail} className="contact__form">
             <div className="contact__form-div">
               <label className="contact__form-tag">Name</label>
               <input

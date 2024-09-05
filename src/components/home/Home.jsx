@@ -1,8 +1,11 @@
+// Home.jsx
 import React from "react";
 import "./home.css";
 import Social from "./Social";
 import Data from "./Data";
 import ScrollDown from "./ScrollDown";
+import ChatBot from "./ChatBot"; // Import the ChatBot component
+
 const Home = () => {
   return (
     <section className="home section" id="home">
@@ -13,6 +16,7 @@ const Home = () => {
           <Data />
         </div>
         <ScrollDown />
+        <ChatBot /> {/* Add ChatBot component here */}
       </div>
     </section>
   );

@@ -11,8 +11,8 @@ const Info = () => {
 
       <div className="about__box">
         <i class="bx bx-briefcase about__icon"></i>
-        <h3 className="about__title">Completed</h3>
-        <span className="about__subtitle">Vehical Tracker</span>
+        <h3 className="about__title">Projects</h3>
+        <span className="about__subtitle">Indoor Localization</span>
       </div>
 
       <div className="about__box">

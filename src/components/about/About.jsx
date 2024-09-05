@@ -13,8 +13,7 @@ const About = () => {
         <div className="about__data">
           <Info />
           <p className="about__description">
-            Flutter and Frontend developer, I create web pages with UI/UX user
-            interface, I have years of experience.
+          Experienced Full Stack Developer skilled in creating dynamic web and mobile applications with a focus on seamless, high-performance solutions.
           </p>
           <a download="" href={CV} className="button button--flex">
             Download CV

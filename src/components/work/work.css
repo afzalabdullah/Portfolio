@@ -1,6 +1,8 @@
+/* General Styles */
 .work__container {
   width: 750px;
 }
+
 .work__card {
   background-color: var(--container-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -8,43 +10,123 @@
   border-radius: 1.5rem;
   margin-bottom: var(--mb-3);
 }
+
 .work__img {
   width: 60px;
   border-radius: 3rem;
   margin-bottom: var(--mb-1);
 }
+
 .work__name {
   font-size: var(--normal-font-size);
   font-weight: var(--font-medium);
   margin-bottom: var(--mb-0-25);
 }
+
 .work__description {
   font-size: var(--small-font-size);
 }
+
 .download__link {
   color: cornflowerblue;
   font-size: var(--small-font-size);
   font-weight: var(--font-normal);
   font-family: var(--body-font);
 }
+
 .download__link:hover {
   color: darkblue;
 }
 
-/* Swiper Class */
+/* Styles for Website category */
+.website-projects {
+  width: 100%;
+}
 
+.website-card {
+  padding: 2rem;
+  text-align: center;
+}
+
+.website-img {
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+
+.website-card .work__name {
+  font-size: 1.5rem; /* Larger title size for website projects */
+  margin-bottom: 1rem;
+}
+
+.website-card .work__description {
+  font-size: 1rem; /* Larger description text for website projects */
+  margin-bottom: 1rem;
+}
+
+/* Swiper Pagination Styles */
 .swiper-pagination-bullet {
   background-color: var(--text-color) !important;
 }
+
 .swiper-pagination-bullet-active {
   background-color: var(--text-color) !important;
 }
 
+/* Button Styles */
+.work__filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-normal);
+  margin: 0 5px; /* Add some spacing between buttons */
+}
+
+.filter-btn.active {
+  background-color: #dcdcdc; /* Light gray for selected button */
+  color: #333; /* Adjust text color if needed */
+}
+
+.filter-btn:hover {
+  background-color: #e0e0e0; /* Light gray for hover effect */
+  color: #333; /* Adjust text color if needed */
+}
+
+/* Responsive Styles */
 @media screen and (max-width: 992px) {
   .work__container {
     width: initial;
   }
   .work__card {
     padding: 1.25rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .work__container {
+    padding: 0 1rem; /* Adjust padding if needed */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .work__container {
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .work__card {
+    padding: 1rem;
   }
 }

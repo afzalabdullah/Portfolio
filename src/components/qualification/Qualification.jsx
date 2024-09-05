@@ -8,8 +8,8 @@ const Qualification = () => {
   };
   return (
     <section className="qualification section" id="portfolio">
-      <h2 className="section__title">Biography</h2>
-      <span className="section__subtitle">My Personal Journey</span>
+      <h2 className="section__title">Career Summary</h2>
+      <span className="section__subtitle">Journey</span>
       <div className="qualification__container container">
         <div className="qualification__tabs">
           <div
@@ -102,7 +102,7 @@ const Qualification = () => {
                 <h3 className="qualification__title">TPL Trakker</h3>
                 <span className="qualification__subtitle">Trainee Engineer</span>
                 <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt">4 Months</i>
+                  <i className="uil uil-calendar-alt">1 Year</i>
                 </div>
               </div>
               <div>

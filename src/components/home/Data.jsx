@@ -56,8 +56,7 @@ const Data = () => {
         </svg>
         <h3 className="home__subtitle">Software Enginner</h3>
         <p className="home__description">
-          I'm Software Enginner based in Pakistan, and I'm very passionate and
-          dedicated to my work.
+        I'm a passionate and dedicated software engineer, committed to delivering innovative solutions and advancing technology.
         </p>
         <a href="#contact" className="button button--flex">
           Say Hello!.
