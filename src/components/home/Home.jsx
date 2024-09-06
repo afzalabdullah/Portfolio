@@ -16,7 +16,7 @@ const Home = () => {
           <Data />
         </div>
         <ScrollDown />
-        <ChatBot /> {/* Add ChatBot component here */}
+        <ChatBot />
       </div>
     </section>
   );

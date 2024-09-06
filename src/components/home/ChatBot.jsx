@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./ChatBot.css";
 
 const defaultMessages = [
@@ -26,15 +27,14 @@ const ChatBot = () => {
     setInput("");
     setShowSuggestions(false);
 
-    // Call the API to get the bot response
+    // Call the API to get the bot response using Axios
     try {
-      const response = await fetch("http://13.60.201.46:5000/get", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ msg: messageText })
+      const response = await axios.post("http://13.60.201.46:5000/get", {
+        msg: messageText
+      }, {
+        headers: { "Content-Type": "application/json" }
       });
-      const data = await response.json();
-      setMessages([...messages, { text: messageText, sender: "user" }, { text: data.response, sender: "bot" }]);
+      setMessages([...messages, { text: messageText, sender: "user" }, { text: response.data.response, sender: "bot" }]);
     } catch (error) {
       console.error("Error sending message:", error);
     }

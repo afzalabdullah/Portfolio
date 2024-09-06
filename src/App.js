@@ -11,6 +11,7 @@ import Footer from "./components/footer/Footer";
 import Scrollup from "./components/scrollup/Scrollup";
 import Work from "./components/work/Work";
 import ChatBot from "./components/home/ChatBot"; // Import ChatBot
+import axios from "axios";
 
 const App = () => {
   return (
