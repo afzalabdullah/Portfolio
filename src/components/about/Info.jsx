@@ -1,25 +1,35 @@
 import React from "react";
 
 const Info = () => {
+const qualities = [
+  {
+    icon: "bx bx-brain",
+    title: "Analytical",
+    subtitle: "Thinks critically",
+  },
+  {
+    icon: "bx bx-group",
+    title: "Collaborative",
+    subtitle: "Builds with others",
+  },
+  {
+    icon: "bx bx-cube",
+    title: "Structured",
+    subtitle: "Designs systems",
+  },
+];
+
+
+
   return (
     <div className="about__info grid">
-      <div className="about__box">
-        <i class="bx bx-award about__icon"></i>
-        <h3 className="about__title">Experience</h3>
-        <span className="about__subtitle">TPL Trakker</span>
-      </div>
-
-      <div className="about__box">
-        <i class="bx bx-briefcase about__icon"></i>
-        <h3 className="about__title">Projects</h3>
-        <span className="about__subtitle">Indoor Localization</span>
-      </div>
-
-      <div className="about__box">
-        <i class="bx bx-phone about__icon"></i>
-        <h3 className="about__title">Contact</h3>
-        <span className="about__subtitle">Online 24/7</span>
-      </div>
+      {qualities.map((quality, index) => (
+        <div className="about__box" key={index}>
+          <i className={`${quality.icon} about__icon`}></i>
+          <h3 className="about__title">{quality.title}</h3>
+          <span className="about__subtitle">{quality.subtitle}</span>
+        </div>
+      ))}
     </div>
   );
 };

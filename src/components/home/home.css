@@ -50,7 +50,7 @@
   font-size: var(--normal-font-size);
 }
 .home__img {
-  background: url(../../assets//profile.jpg);
+  background: url(../../assets/profile.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

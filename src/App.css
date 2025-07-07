@@ -3,22 +3,26 @@
 
 /*=============== VARIABLES CSS ===============*/
 :root {
-  --header-height: 3rem;
+  --header-height: 3.5rem;
 
   /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
   --hue: 0;
   --sat: 0%;
-  --title-color: hsl(var(--hue), var(--sat), 20%);
-  --title-color-dark: hsl(var(--hue), var(--sat), 0%);
-  --text-color: hsl(var(--hue), var(--sat), 46%);
-  --body-color: hsl(var(--hue), var(--sat), 98%);
-  --container-color: #fff;
+  /* Light Theme */
+  --title-color-light: hsl(var(--hue), var(--sat), 20%);
+  --title-color-dark-light: hsl(var(--hue), var(--sat), 0%);
+  --text-color-light: hsl(var(--hue), var(--sat), 46%);
+  --body-color-light: transparent;
+  --container-color-light: transparent;
+  /* Dark Theme */
+  --title-color-dark: hsl(var(--hue), 8%, 75%);
+  --title-color-dark-dark: hsl(var(--hue), 8%, 95%);
+  --text-color-dark: hsl(var(--hue), 8%, 65%);
+  --body-color-dark: transparent;
+  --container-color-dark: transparent;
 
   /*========== Font and typography ==========*/
   --body-font: "Poppins", sans-serif;
-
-  /*.5rem = 8px | 1rem = 16px ...*/
   --big-font-size: 3.5rem;
   --h1-font-size: 2.25rem;
   --h2-font-size: 1.5rem;
@@ -26,15 +30,13 @@
   --normal-font-size: 1rem;
   --small-font-size: 0.875rem;
   --smaller-font-size: 0.813rem;
-  --tiny-font-size: 0.625rem;
 
   /*========== Font weight ==========*/
   --font-normal: 400;
   --font-medium: 500;
   --font-semi-bold: 600;
 
-  /*========== Margenes Bottom ==========*/
-  /*.5rem = 8px | 1rem = 16px ...*/
+  /*========== Margins Bottom ==========*/
   --mb-0-25: 0.25rem;
   --mb-0-5: 0.5rem;
   --mb-0-75: 0.75rem;
@@ -50,17 +52,21 @@
   --z-modal: 1000;
 }
 
-/* Responsive typography */
-@media screen and (max-width: 992px) {
-  :root {
-    --big-font-size: 2.75rem;
-    --h1-font-size: 1.5rem;
-    --h2-font-size: 1.25rem;
-    --h3-font-size: 1rem;
-    --normal-font-size: 0.938rem;
-    --small-font-size: 0.813rem;
-    --smaller-font-size: 0.75rem;
-  }
+/* Apply theme based on data-theme attribute */
+[data-theme="light"] {
+  --title-color: var(--title-color-light);
+  --title-color-dark: var(--title-color-dark-light);
+  --text-color: var(--text-color-light);
+  --body-color: var(--body-color-light);
+  --container-color: var(--container-color-light);
+}
+
+[data-theme="dark"] {
+  --title-color: var(--title-color-dark);
+  --title-color-dark: var(--title-color-dark-dark);
+  --text-color: var(--text-color-dark);
+  --body-color: var(--body-color-dark);
+  --container-color: var(--container-color-dark);
 }
 
 /*=============== BASE ===============*/
@@ -74,22 +80,15 @@ html {
   scroll-behavior: smooth;
 }
 
-body,
-button,
-input,
-textarea {
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: color 0.3s;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
 }
 
-body {
-  background-color: var(--body-color);
-  color: var(--text-color);
-}
-
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
 }
@@ -102,6 +101,8 @@ a {
   text-decoration: none;
   font-size: var(--normal-font-size);
   font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+  margin-bottom: var(--mb-1-5);
 }
 
 button {
@@ -118,6 +119,9 @@ img {
 /*=============== REUSABLE CSS CLASSES ===============*/
 .section {
   padding: 6rem 0 2rem;
+  background: transparent;
+  position: relative;
+  z-index: var(--z-tooltip);
 }
 
 .section__title {
@@ -141,6 +145,7 @@ img {
   max-width: 968px;
   margin-left: auto;
   margin-right: auto;
+  background: transparent;
 }
 
 .grid {
@@ -156,6 +161,7 @@ img {
   padding: 1.25rem 2rem;
   border-radius: 1rem;
   font-weight: var(--font-medium);
+  transition: background-color 0.3s;
 }
 
 .button:hover {
@@ -171,9 +177,48 @@ img {
   align-items: center;
 }
 
+/* Ensure cursor-glow is theme-adaptive */
+[data-theme="light"] .cursor-glow {
+  background: radial-gradient(circle, rgba(100, 100, 100, 0.08) 0%, transparent 70%);
+}
+
+[data-theme="dark"] .cursor-glow {
+  background: radial-gradient(circle, rgba(200, 200, 200, 0.1) 0%, transparent 70%);
+}
+
+/* Ensure main and app-container are transparent */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+.main {
+  position: relative;
+  z-index: var(--z-tooltip);
+  background: transparent;
+}
+
+/* Ensure other components are transparent */
+header,
+footer {
+  background: transparent;
+  position: relative;
+  z-index: var(--z-fixed);
+}
+
 /*=============== BREAKPOINTS ===============*/
-/* For large devices */
 @media screen and (max-width: 992px) {
+  :root {
+    --big-font-size: 2.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+  }
+
   .container {
     margin-left: var(--mb-1-5);
     margin-right: var(--mb-1-5);
@@ -189,7 +234,6 @@ img {
   }
 }
 
-/* For medium devices */
 @media screen and (max-width: 768px) {
   body {
     margin: 0 0 var(--header-height) 0;
@@ -204,10 +248,6 @@ img {
   }
 }
 
-@media screen and (max-width: 576px) {
-}
-
-/* For small devices */
 @media screen and (max-width: 350px) {
   :root {
     --big-font-size: 2.25rem;

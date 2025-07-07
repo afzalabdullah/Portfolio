@@ -1,108 +1,92 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./header.css";
+
 const Header = () => {
-  /*==========Change Background Header==========*/
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector(".header");
-    if (this.scrollY >= 80) {
-      header.classList.add("scroll-header");
-    } else {
-      header.classList.remove("scroll-header");
-    }
-  });
-  /*==========Toggle Menu ==========*/
-  const [Toggle, showMenu] = useState(false);
-  const [activeNav, setActiveNav] = useState("#home");
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector(".header");
+      const homeSection = document.querySelector("#home");
+
+      if (homeSection && window.scrollY >= homeSection.offsetHeight - 100) {
+        header.classList.add("header--scrolled");
+      } else {
+        header.classList.remove("header--scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const navItems = [
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#career", label: "Biography" },
+    { href: "#work", label: "Work" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
     <header className="header">
       <nav className="nav container">
-        <a href="#index" className="nav__logo">
-          Abdullah
-        </a>
-        <div className={Toggle ? "nav__menu show-menu" : "nav__menu"}>
-          <ul className="nav__list grid">
-            <li className="nav__item">
-              <a
-                href="#home"
-                onClick={() => setActiveNav("#home")}
-                className={
-                  activeNav === "#home" ? "nav__link active-link" : "nav__link"
-                }
-              >
-                <i className="uil uil-estate nav__icon"></i> Home
-              </a>
-            </li>
-            <li className="nav__item">
-              <a
-                href="#about"
-                onClick={() => setActiveNav("#about")}
-                className={
-                  activeNav === "#about" ? "nav__link active-link" : "nav__link"
-                }
-              >
-                <i className="uil uil-user nav__icon"></i>About
-              </a>
-            </li>
-            <li className="nav__item">
-              <a
-                href="#skills"
-                onClick={() => setActiveNav("#skills")}
-                className={
-                  activeNav === "#skills"
-                    ? "nav__link active-link"
-                    : "nav__link"
-                }
-              >
-                <i className="uil uil-file-alt nav__icon"></i>Skills
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a
-                href="#portfolio"
-                onClick={() => setActiveNav("#portfolio")}
-                className={
-                  activeNav === "#portfolio"
-                    ? "nav__link active-link"
-                    : "nav__link"
-                }
-              >
-                <i className="uil uil-scenery nav__icon"></i>Biography
-              </a>
-            </li>
-            <li className="nav__item">
-              <a
-                href="#work"
-                onClick={() => setActiveNav("#work")}
-                className={
-                  activeNav === "#work" ? "nav__link active-link" : "nav__link"
-                }
-              >
-                <i className="uil uil-briefcase-alt nav__icon"></i>Work
-              </a>
-            </li>
-            <li className="nav__item">
-              <a
-                href="#contact"
-                onClick={() => setActiveNav("#contact")}
-                className={
-                  activeNav === "#contact"
-                    ? "nav__link active-link"
-                    : "nav__link"
-                }
-              >
-                <i className="uil uil-message nav__icon"></i>Contact
-              </a>
-            </li>
+        <div className={`nav__menu ${isMenuOpen ? "nav__menu--open" : ""}`}>
+          <ul className="nav__list">
+            {navItems.map((item) => (
+              <li key={item.href} className="nav__item">
+                <a
+                  href={item.href}
+                  onClick={() => {
+                    setActiveSection(item.href);
+                    setMenuOpen(false);
+                  }}
+                  className={`nav__link ${
+                    activeSection === item.href ? "nav__link--active" : ""
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
-          <i
-            className="uil uil-times nav__close"
-            onClick={() => showMenu(!Toggle)}
-          ></i>
+          <button
+            className="nav__close"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <i className="uil uil-times"></i>
+          </button>
         </div>
-        <div className="nav__toggle" onClick={() => showMenu(!Toggle)}>
-          <i className="uil uil-apps"></i>
+
+        <div className="nav__controls">
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            <i className={theme === "light" ? "uil uil-moon" : "uil uil-sun"}></i>
+          </button>
+          <button
+            className="nav__toggle"
+            onClick={() => setMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <i className="uil uil-apps"></i>
+          </button>
         </div>
       </nav>
     </header>

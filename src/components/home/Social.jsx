@@ -1,4 +1,5 @@
 import React from "react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const Social = () => {
   return (
@@ -8,16 +9,18 @@ const Social = () => {
         className="home__social-icon"
         target="_blank"
         rel="noreferrer"
+        aria-label="LinkedIn Profile"
       >
-        <i className="uil uil-linkedin"></i>
+        <FaLinkedin />
       </a>
       <a
         href="https://github.com/afzalabdullah/"
         className="home__social-icon"
         target="_blank"
         rel="noreferrer"
+        aria-label="GitHub Profile"
       >
-        <i className="uil uil-github"></i>
+        <FaGithub />
       </a>
       
     </div>

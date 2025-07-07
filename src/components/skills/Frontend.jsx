@@ -2,60 +2,25 @@ import React from "react";
 
 const Frontend = () => {
   return (
-    <div className="skills__content">
-      <h3 className="skills__title">Frontend Technology</h3>
-      <div className="skills__box">
-        <div className="skills__group">
-          <div className="skills__data">
-            <i className="bx bx-badge-check"></i>
+    <div className="skills__card">
+      <h3 className="skills__title">Frontend Technologies</h3>
+      <div className="skills__grid">
+        {[
+          { name: "HTML", level: "Advanced" },
+          { name: "CSS", level: "Advanced" },
+          { name: "JavaScript", level: "Advanced" },
+          { name: "Bootstrap", level: "Advanced" },
+          { name: "React", level: "Advanced" },
+          { name: "Flutter", level: "Intermediate" },
+        ].map((skill, index) => (
+          <div className="skills__item" key={index}>
+            <i className="bx bx-check-circle skills__icon"></i>
             <div>
-              <h3 className="skills__name">HTML</h3>
-              <span className="skills__level">Advanced</span>
+              <h4 className="skills__name">{skill.name}</h4>
+              <span className="skills__level">{skill.level}</span>
             </div>
           </div>
-
-          <div className="skills__data">
-            <i className="bx bx-badge-check"></i>
-            <div>
-              <h3 className="skills__name">CSS</h3>
-              <span className="skills__level">Advanced</span>
-            </div>
-          </div>
-
-          <div className="skills__data">
-            <i className="bx bx-badge-check"></i>
-            <div>
-              <h3 className="skills__name">JavaScript</h3>
-              <span className="skills__level">Basic</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="skills__group">
-          <div className="skills__data">
-            <i className="bx bx-badge-check"></i>
-            <div>
-              <h3 className="skills__name">Bootstrap</h3>
-              <span className="skills__level">Basic</span>
-            </div>
-          </div>
-
-          <div className="skills__data">
-            <i className="bx bx-badge-check"></i>
-            <div>
-              <h3 className="skills__name">React</h3>
-              <span className="skills__level">Basic</span>
-            </div>
-          </div>
-
-          <div className="skills__data">
-            <i className="bx bx-badge-check"></i>
-            <div>
-              <h3 className="skills__name">Flutter</h3>
-              <span className="skills__level">Intermediate</span>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
