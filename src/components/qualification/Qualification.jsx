@@ -18,7 +18,6 @@ const Qualification = () => {
       months += 12;
     }
     
-    // For very short durations, return "1 Mo" minimum if it's the same month
     if (years === 0 && months === 0) return "1 Mo";
 
     const parts = [];
@@ -28,172 +27,168 @@ const Qualification = () => {
     return parts.join(' ');
   };
 
+  const education = [
+    {
+      title: "PAF - KIET",
+      subtitle: "BE Software Engineering (GPA 3.45)",
+      date: "2020 – 2024",
+      start: "2020-01-01",
+      end: "2024-01-01"
+    },
+    {
+      title: "Govt. National College",
+      subtitle: "Intermediate",
+      date: "2018 – 2020",
+      start: "2018-01-01",
+      end: "2020-01-01"
+    },
+    {
+      title: "Seerat-E-Complex",
+      subtitle: "Matriculation",
+      date: "2008 – 2018",
+      start: "2008-01-01",
+      end: "2018-01-01"
+    }
+  ];
+
+  const experience = [
+    {
+      title: "Kode Kinetics (USA)",
+      subtitle: "FullStack Developer",
+      date: "Dec 2024 – Present",
+      start: "2024-12-01",
+      end: null
+    },
+    {
+      title: "Rajby Textiles Pvt. Ltd",
+      subtitle: "Software Engineer – ERP",
+      date: "Nov 2024 – Present",
+      start: "2024-11-01",
+      end: null
+    },
+    {
+      title: "TPL Trakker Ltd.",
+      subtitle: "Assistant Manager – R&D",
+      date: "Aug 2024 – Nov 2024",
+      start: "2024-08-01",
+      end: "2024-11-01"
+    },
+    {
+      title: "TPL Trakker Ltd.",
+      subtitle: "Trainee Engineer – R&D",
+      date: "May 2023 – Aug 2024",
+      start: "2023-05-01",
+      end: "2024-08-01"
+    }
+  ];
+
   return (
     <section className="qualification section" id="career">
       <div className="container">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <span className="section__label">Resume</span>
-          <h2 className="section__title">Career Summary</h2>
-          <p className="section__subtitle">Mapping out my professional growth and learning</p>
+          <h2 className="section__title">Professional Journey</h2>
+          <p className="section__subtitle">A chronicle of my academic foundation and professional growth</p>
         </div>
 
         <div className="qualification__container">
           <div className="qualification__tabs">
             <button
-              className={`qualification__button ${toggleState === 1 ? "qualification__active" : ""}`}
+              className={`qualification__tab-btn ${toggleState === 1 ? "active" : ""}`}
               onClick={() => toggleTab(1)}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-              Education
+              Academic
             </button>
             <button
-              className={`qualification__button ${toggleState === 2 ? "qualification__active" : ""}`}
+              className={`qualification__tab-btn ${toggleState === 2 ? "active" : ""}`}
               onClick={() => toggleTab(2)}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-              Experience
+              Professional
             </button>
+            <div className={`qualification__tab-indicator tab-${toggleState}`}></div>
           </div>
 
           <div className="qualification__sections">
             {/* Education Tab */}
-            <div className={`qualification__content ${toggleState === 1 ? "qualification__content-active" : ""}`}>
-              <div className="qualification__data">
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">PAF - KIET</h3>
-                  <span className="qualification__subtitle">BE Software Engineering (GPA 3.45)</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    2020 – 2024 
-                    <span className="qualification__duration">{calculateDuration("2020-01-01", "2024-01-01")}</span>
+            <div className={`qualification__content ${toggleState === 1 ? "active" : ""}`}>
+              {education.map((item, idx) => (
+                <div className="qualification__data" key={idx}>
+                  <div className={idx % 2 === 0 ? "qualification__card left" : "qualification__spacer"}>
+                    {idx % 2 === 0 && (
+                      <div className="qualification__item">
+                        <h3 className="qualification__item-title">{item.title}</h3>
+                        <span className="qualification__item-subtitle">{item.subtitle}</span>
+                        <div className="qualification__item-date">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                          {item.date} 
+                          <span className="qualification__item-duration">{calculateDuration(item.start, item.end)}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                  <span className="qualification__line" />
-                </div>
-                <div></div>
-              </div>
 
-              <div className="qualification__data">
-                <div></div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                  <span className="qualification__line" />
-                </div>
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">Govt. National College</h3>
-                  <span className="qualification__subtitle">Intermediate</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    2018 – 2020
-                    <span className="qualification__duration">{calculateDuration("2018-01-01", "2020-01-01")}</span>
+                  <div className="qualification__timeline">
+                    <span className="qualification__dot" />
+                    {idx !== education.length - 1 && <span className="qualification__line" />}
                   </div>
-                </div>
-              </div>
 
-              <div className="qualification__data">
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">Seerat-E-Complex</h3>
-                  <span className="qualification__subtitle">Matriculation</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    2008 – 2018
-                    <span className="qualification__duration">{calculateDuration("2008-01-01", "2018-01-01")}</span>
+                  <div className={idx % 2 !== 0 ? "qualification__card right" : "qualification__spacer"}>
+                    {idx % 2 !== 0 && (
+                      <div className="qualification__item">
+                        <h3 className="qualification__item-title">{item.title}</h3>
+                        <span className="qualification__item-subtitle">{item.subtitle}</span>
+                        <div className="qualification__item-date">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                          {item.date} 
+                          <span className="qualification__item-duration">{calculateDuration(item.start, item.end)}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                </div>
-                <div></div>
-              </div>
+              ))}
             </div>
 
             {/* Experience Tab */}
-            <div className={`qualification__content ${toggleState === 2 ? "qualification__content-active" : ""}`}>
-              <div className="qualification__data">
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">Kode Kinetics (USA)</h3>
-                  <span className="qualification__subtitle">FullStack Developer</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    Dec 2024 – Present
-                    <span className="qualification__duration">{calculateDuration("2024-12-01")}</span>
+            <div className={`qualification__content ${toggleState === 2 ? "active" : ""}`}>
+              {experience.map((item, idx) => (
+                <div className="qualification__data" key={idx}>
+                  <div className={idx % 2 === 0 ? "qualification__card left" : "qualification__spacer"}>
+                    {idx % 2 === 0 && (
+                      <div className="qualification__item">
+                        <h3 className="qualification__item-title">{item.title}</h3>
+                        <span className="qualification__item-subtitle">{item.subtitle}</span>
+                        <div className="qualification__item-date">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                          {item.date} 
+                          <span className="qualification__item-duration">{calculateDuration(item.start, item.end)}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                  <span className="qualification__line" />
-                </div>
-                <div></div>
-              </div>
 
-              <div className="qualification__data">
-                <div></div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                  <span className="qualification__line" />
-                </div>
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">Rajby Textiles Pvt. Ltd</h3>
-                  <span className="qualification__subtitle">Software Engineer – ERP</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    Nov 2024 – Present
-                    <span className="qualification__duration">{calculateDuration("2024-11-01")}</span>
+                  <div className="qualification__timeline">
+                    <span className="qualification__dot" />
+                    {idx !== experience.length - 1 && <span className="qualification__line" />}
                   </div>
-                </div>
-              </div>
 
-              <div className="qualification__data">
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">TPL Trakker Ltd.</h3>
-                  <span className="qualification__subtitle">Assistant Manager – R&D</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    Aug 2024 – Nov 2024
-                    <span className="qualification__duration">{calculateDuration("2024-08-01", "2024-11-01")}</span>
+                  <div className={idx % 2 !== 0 ? "qualification__card right" : "qualification__spacer"}>
+                    {idx % 2 !== 0 && (
+                      <div className="qualification__item">
+                        <h3 className="qualification__item-title">{item.title}</h3>
+                        <span className="qualification__item-subtitle">{item.subtitle}</span>
+                        <div className="qualification__item-date">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                          {item.date} 
+                          <span className="qualification__item-duration">{calculateDuration(item.start, item.end)}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                  <span className="qualification__line" />
-                </div>
-                <div></div>
-              </div>
-
-              <div className="qualification__data">
-                <div></div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                  <span className="qualification__line" />
-                </div>
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">TPL Trakker Ltd.</h3>
-                  <span className="qualification__subtitle">Trainee Engineer – R&D</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    May 2023 – Aug 2024
-                    <span className="qualification__duration">{calculateDuration("2023-05-01", "2024-08-01")}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="qualification__data">
-                <div className="qualification__item-content">
-                  <h3 className="qualification__title">Pakistan Aeronautical Complex</h3>
-                  <span className="qualification__subtitle">Intern – Software & Aerospace</span>
-                  <div className="qualification__calendar">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    Jan 2023 – Feb 2023
-                    <span className="qualification__duration">{calculateDuration("2023-01-01", "2023-02-01")}</span>
-                  </div>
-                </div>
-                <div className="qualification__marker">
-                  <span className="qualification__rounder" />
-                </div>
-                <div></div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

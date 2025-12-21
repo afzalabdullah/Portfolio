@@ -48,26 +48,24 @@
 
 .cv-modal-close {
   background: var(--color-bg-secondary);
-  border: none;
-  width: 36px;
-  height: 36px;
+  border: 1px solid var(--color-border);
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-base);
+  font-size: 18px;
 }
 
 .cv-modal-close:hover {
-  background: #fee2e2;
-  color: #ef4444;
-}
-
-[data-theme="dark"] .cv-modal-close:hover {
-  background: #7f1d1d;
-  color: #fecaca;
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+  transform: rotate(90deg);
 }
 
 .cv-modal-content {
