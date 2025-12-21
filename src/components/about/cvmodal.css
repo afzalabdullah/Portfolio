@@ -72,20 +72,24 @@
 
 .cv-modal-content {
   flex: 1;
-  background: var(--color-bg-secondary);
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.cv-modal-scroll {
   overflow-y: auto;
-  padding: var(--spacing-10) var(--spacing-4);
+  overflow-x: hidden;
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-8) var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cv-pdf-page {
-  margin-bottom: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
   box-shadow: var(--shadow-lg);
+  max-width: 100%;
+}
+
+.cv-pdf-page canvas {
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .cv-modal-loading, .cv-modal-error {
@@ -138,9 +142,5 @@
 @media screen and (max-width: 768px) {
   .cv-modal-container {
     height: 90vh;
-  }
-  
-  .cv-modal-scroll {
-    padding: var(--spacing-6) var(--spacing-2);
   }
 }

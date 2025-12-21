@@ -13,6 +13,7 @@ import Work from "./components/work/Work"
 
 const App = () => {
   const [theme, setTheme] = useState("light")
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false)
 
   useEffect(() => {
     // Load saved theme preference
@@ -32,10 +33,10 @@ const App = () => {
   return (
     <div className="app-container">
       <MouseBackgroundEffect theme={theme} />
-      <Header />
+      <Header isHidden={isCVModalOpen} />
       <main className="main">
         <Home />
-        <About />
+        <About isCVModalOpen={isCVModalOpen} setIsCVModalOpen={setIsCVModalOpen} />
         <Skills />
         <Qualification />
         <Work />

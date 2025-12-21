@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./header.css";
 
-const Header = () => {
+const Header = ({ isHidden }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,7 +41,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`header ${isScrolled ? "header--scrolled" : ""}`}>
+    <header className={`header ${isScrolled ? "header--scrolled" : ""} ${isHidden ? "header--hidden" : ""}`}>
       <nav className="nav container">
         <a href="#home" className="nav__logo">Portfolio</a>
 

@@ -16,6 +16,10 @@
   transition: all var(--transition-base);
 }
 
+.header--hidden {
+  display: none;
+}
+
 [data-theme="dark"] .header {
   background: rgba(10, 10, 10, 0.8);
 }
