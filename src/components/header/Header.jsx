@@ -131,7 +131,7 @@ const Header = ({ isHidden }) => {
 
             <div className="nav__overlay-footer">
               <div className="nav__overlay-socials">
-                <a href="https://github.com/afzalabdullah" target="_blank" rel="noreferrer" className="nav__overlay-social">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/engr-abdullah-afzal-96b962208/" target="_blank" rel="noreferrer" className="nav__overlay-social">LinkedIn</a>
                 <a href="https://github.com/afzalabdullah" target="_blank" rel="noreferrer" className="nav__overlay-social">GitHub</a>
                </div>
               <p className="nav__overlay-copy">© {new Date().getFullYear()} Abdullah. All rights reserved.</p>
