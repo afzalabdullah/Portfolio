@@ -8,122 +8,162 @@ const Qualification = () => {
 
   return (
     <section className="qualification section" id="career">
-      <h2 className="section__title">Career Summary</h2>
-      <span className="section__subtitle">My Journey So Far</span>
-
-      <div className="qualification__container container">
-        <div className="qualification__tabs">
-          <div
-            className={`qualification__button button--flex ${toggleState === 1 ? "qualification__active" : ""}`}
-            onClick={() => toggleTab(1)}
-          >
-            <i className="uil uil-graduation-cap qualification__icon" />
-            Education
-          </div>
-          <div
-            className={`qualification__button button--flex ${toggleState === 2 ? "qualification__active" : ""}`}
-            onClick={() => toggleTab(2)}
-          >
-            <i className="uil uil-briefcase-alt qualification__icon" />
-            Experience
-          </div>
+      <div className="container">
+        <div className="text-center mb-12">
+          <span className="section__label">Resume</span>
+          <h2 className="section__title">Career Summary</h2>
+          <p className="section__subtitle">Mapping out my professional growth and learning</p>
         </div>
 
-        <div className="qualification__sections">
-          {/* Education Tab */}
-          <div className={`qualification__content ${toggleState === 1 ? "qualification__content-active" : ""}`}>
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">PAF - KIET</h3>
-                <span className="qualification__subtitle">BE Software Engineering (GPA 3.45)</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> 2020 – 2024
-                </div>
-              </div>
-              <div><span className="qualification__rounder" /><span className="qualification__line" /></div>
-            </div>
-
-            <div className="qualification__data">
-              <div></div>
-              <div><span className="qualification__rounder" /><span className="qualification__line" /></div>
-              <div>
-                <h3 className="qualification__title">Govt. National College</h3>
-                <span className="qualification__subtitle">Intermediate</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> 2018 – 2020
-                </div>
-              </div>
-            </div>
-
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Seerat-E-Complex</h3>
-                <span className="qualification__subtitle">Matriculation</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> 2008 – 2018
-                </div>
-              </div>
-              <div><span className="qualification__rounder" /><span className="qualification__line" /></div>
-            </div>
+        <div className="qualification__container">
+          <div className="qualification__tabs">
+            <button
+              className={`qualification__button ${toggleState === 1 ? "qualification__active" : ""}`}
+              onClick={() => toggleTab(1)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              Education
+            </button>
+            <button
+              className={`qualification__button ${toggleState === 2 ? "qualification__active" : ""}`}
+              onClick={() => toggleTab(2)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              Experience
+            </button>
           </div>
 
-          {/* Experience Tab */}
-          <div className={`qualification__content ${toggleState === 2 ? "qualification__content-active" : ""}`}>
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Kode Kinetics (USA)</h3>
-                <span className="qualification__subtitle">FullStack Developer</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> Dec 2024 – Present
+          <div className="qualification__sections">
+            {/* Education Tab */}
+            <div className={`qualification__content ${toggleState === 1 ? "qualification__content-active" : ""}`}>
+              <div className="qualification__data">
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">PAF - KIET</h3>
+                  <span className="qualification__subtitle">BE Software Engineering (GPA 3.45)</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    2020 – 2024
+                  </div>
+                </div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                  <span className="qualification__line" />
+                </div>
+                <div></div>
+              </div>
+
+              <div className="qualification__data">
+                <div></div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                  <span className="qualification__line" />
+                </div>
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">Govt. National College</h3>
+                  <span className="qualification__subtitle">Intermediate</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    2018 – 2020
+                  </div>
                 </div>
               </div>
-              <div><span className="qualification__rounder" /><span className="qualification__line" /></div>
+
+              <div className="qualification__data">
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">Seerat-E-Complex</h3>
+                  <span className="qualification__subtitle">Matriculation</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    2008 – 2018
+                  </div>
+                </div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                </div>
+                <div></div>
+              </div>
             </div>
 
-            <div className="qualification__data">
-              <div></div>
-              <div><span className="qualification__rounder" /><span className="qualification__line" /></div>
-              <div>
-                <h3 className="qualification__title">Rajby Textiles Pvt. Ltd</h3>
-                <span className="qualification__subtitle">Software Engineer – ERP Department</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> Nov 2024 – Present
+            {/* Experience Tab */}
+            <div className={`qualification__content ${toggleState === 2 ? "qualification__content-active" : ""}`}>
+              <div className="qualification__data">
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">Kode Kinetics (USA)</h3>
+                  <span className="qualification__subtitle">FullStack Developer</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Dec 2024 – Present
+                  </div>
                 </div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                  <span className="qualification__line" />
+                </div>
+                <div></div>
               </div>
-            </div>
 
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">TPL Trakker Ltd.</h3>
-                <span className="qualification__subtitle">Assistant Manager – R&D</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> Aug 2024 – Nov 2024
+              <div className="qualification__data">
+                <div></div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                  <span className="qualification__line" />
+                </div>
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">Rajby Textiles Pvt. Ltd</h3>
+                  <span className="qualification__subtitle">Software Engineer – ERP</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Nov 2024 – Present
+                  </div>
                 </div>
               </div>
-              <div><span className="qualification__rounder" /><span className="qualification__line" /></div>
-            </div>
 
-            <div className="qualification__data">
-              <div></div>
-              <div><span className="qualification__rounder" /><span className="qualification__line" /></div>
-              <div>
-                <h3 className="qualification__title">TPL Trakker Ltd.</h3>
-                <span className="qualification__subtitle">Trainee Engineer – R&D</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> May 2023 – Aug 2024
+              <div className="qualification__data">
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">TPL Trakker Ltd.</h3>
+                  <span className="qualification__subtitle">Assistant Manager – R&D</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Aug 2024 – Nov 2024
+                  </div>
                 </div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                  <span className="qualification__line" />
+                </div>
+                <div></div>
               </div>
-            </div>
 
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Pakistan Aeronautical Complex</h3>
-                <span className="qualification__subtitle">Intern – Software & Aerospace</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt" /> Jan 2023 – Feb 2023
+              <div className="qualification__data">
+                <div></div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                  <span className="qualification__line" />
+                </div>
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">TPL Trakker Ltd.</h3>
+                  <span className="qualification__subtitle">Trainee Engineer – R&D</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    May 2023 – Aug 2024
+                  </div>
                 </div>
               </div>
-              <div><span className="qualification__rounder" /></div>
+
+              <div className="qualification__data">
+                <div className="qualification__item-content">
+                  <h3 className="qualification__title">Pakistan Aeronautical Complex</h3>
+                  <span className="qualification__subtitle">Intern – Software & Aerospace</span>
+                  <div className="qualification__calendar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Jan 2023 – Feb 2023
+                  </div>
+                </div>
+                <div className="qualification__marker">
+                  <span className="qualification__rounder" />
+                </div>
+                <div></div>
+              </div>
             </div>
           </div>
         </div>

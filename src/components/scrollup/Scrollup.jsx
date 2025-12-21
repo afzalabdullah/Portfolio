@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./scrollup.css";
 
 const Scrollup = () => {
-  window.addEventListener("scroll", function () {
-    const scrollUp = document.querySelector(".scrollup");
-    if (this.scrollY >= 560) {
-      scrollUp.classList.add("show-scroll");
-    } else {
-      scrollUp.classList.remove("show-scroll");
-    }
-  });
+  const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 560) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <a href="#home" className="scrollup">
-      <i className="uil uil-arrow-up scrollup__icon"></i>
+    <a 
+      href="#home" 
+      className={`scrollup ${showScroll ? "show-scroll" : ""}`}
+      aria-label="Scroll to top"
+    >
+      <svg 
+        className="scrollup__icon" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="3" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+      >
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
     </a>
   );
 };

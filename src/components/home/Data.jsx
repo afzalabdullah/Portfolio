@@ -3,11 +3,12 @@ import React from "react";
 const Data = () => {
   return (
     <div className="home__data">
+      <span className="home__label">Available for work</span>
       <h1 className="home__title">
-        Abdullah
+        Abdullah 
         <svg
-          width="36"
-          height="36"
+          width="48"
+          height="48"
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -54,39 +55,35 @@ const Data = () => {
             fill="#EBA352"
           ></path>
         </svg>
-        <h3 className="home__subtitle">Software Engineer & Innovator</h3>
-        <p className="home__description">
-        I'm a driven software engineer specializing in full-stack development, creating scalable and user-focused solutions that empower innovation and transform ideas into reality.
-        </p>
-        <a href="#contact" className="button button--flex">
+      </h1>
+      <h3 className="home__subtitle">Software Engineer & Innovator</h3>
+      <p className="home__description">
+        Specializing in building high-performance full-stack applications and 
+        user-focused digital experiences that transform complex ideas into reality.
+      </p>
+      
+      <div className="home__actions">
+        <a href="#contact" className="button button--large">
           Let's Connect
           <svg
-            className="button__icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--container-color)"
-            strokeWidth="2"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="button__icon"
           >
-            <path
-              d="M7 17L17 7"
-              stroke="var(--container-color)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            ></path>
-            <path
-              d="M7 7h10v10"
-              stroke="var(--container-color)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            ></path>
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
           </svg>
         </a>
-      </h1>
+        <a href="#about" className="button button--secondary button--large">
+          Learn More
+        </a>
+      </div>
     </div>
   );
 };
