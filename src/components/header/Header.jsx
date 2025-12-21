@@ -16,14 +16,14 @@ const Header = ({ isHidden }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
+  const navItems = React.useMemo(() => [
     { id: "01", label: "Home", href: "#home" },
     { id: "02", label: "About", href: "#about" },
     { id: "03", label: "Skills", href: "#skills" },
     { id: "04", label: "Career", href: "#career" },
     { id: "05", label: "Work", href: "#work" },
     { id: "06", label: "Contact", href: "#contact" },
-  ];
+  ], []);
 
   useEffect(() => {
     const sections = navItems.map(item => document.querySelector(item.href)).filter(Boolean);
@@ -69,7 +69,7 @@ const Header = ({ isHidden }) => {
     <header className={`header ${isScrolled ? "header--scrolled" : ""} ${isHidden ? "header--hidden" : ""}`}>
       <nav className="nav container">
         <a href="#home" className="nav__logo">
-          Portfolio<span>.</span>
+          Abdullah<span>.</span>
         </a>
 
         <div className="nav__controls">
@@ -131,11 +131,10 @@ const Header = ({ isHidden }) => {
 
             <div className="nav__overlay-footer">
               <div className="nav__overlay-socials">
-                <a href="#" className="nav__overlay-social">LinkedIn</a>
-                <a href="#" className="nav__overlay-social">GitHub</a>
-                <a href="#" className="nav__overlay-social">Dribbble</a>
-              </div>
-              <p className="nav__overlay-copy">© 2024 Abdullah. All rights reserved.</p>
+                <a href="https://github.com/afzalabdullah" target="_blank" rel="noreferrer" className="nav__overlay-social">LinkedIn</a>
+                <a href="https://github.com/afzalabdullah" target="_blank" rel="noreferrer" className="nav__overlay-social">GitHub</a>
+               </div>
+              <p className="nav__overlay-copy">© {new Date().getFullYear()} Abdullah. All rights reserved.</p>
             </div>
           </div>
         </div>

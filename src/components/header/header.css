@@ -184,16 +184,6 @@
   margin-top: 10px;
 }
 
-.nav__overlay-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-8);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
-  list-style: none;
-}
-
 .nav__overlay-link {
   font-size: 8vw;
   font-weight: 800;

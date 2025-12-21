@@ -94,6 +94,11 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+  /* Mouse Glow */
+  --mouse-glow-primary: rgba(75, 85, 99, 0.15);
+  --mouse-glow-secondary: rgba(148, 163, 184, 0.1);
+  --mouse-glow-accent: rgba(75, 85, 99, 0.05);
 }
 
 [data-theme="dark"] {
@@ -106,6 +111,11 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+  /* Mouse Glow */
+  --mouse-glow-primary: rgba(99, 102, 241, 0.4);
+  --mouse-glow-secondary: rgba(167, 139, 250, 0.2);
+  --mouse-glow-accent: rgba(99, 102, 241, 0.15);
 }
 
 /*=============== BASE RESET ===============*/
