@@ -6,21 +6,24 @@
   --header-height: 70px;
 
   /*========== Colors - Light Theme ==========*/
-  --color-bg-light: #ffffff;
-  --color-bg-secondary-light: #f9fafb;
-  --color-text-light: #1a1a1a;
-  --color-text-muted-light: #6b7280;
-  --color-border-light: #e5e7eb;
-  --color-accent: #6366f1;
-  --color-accent-hover: #4f46e5;
-  --color-accent-light: rgba(99, 102, 241, 0.1);
-  
-  /*========== Colors - Dark Theme ==========*/
-  --color-bg-dark: #0a0a0a;
-  --color-bg-secondary-dark: #18181b;
-  --color-text-dark: #f9fafb;
-  --color-text-muted-dark: #9ca3af;
-  --color-border-dark: #27272a;
+--color-bg-light: #ffffff;
+--color-bg-secondary-light: #f8fafc;
+--color-text-light: #0f172a;
+--color-text-muted-light: #64748b;
+--color-border-light: #e2e8f0;
+
+--color-accent: #4b5563;          
+--color-accent-hover: #374151;    
+--color-accent-light: rgba(75, 85, 99, 0.12);
+
+
+/*========== Colors - Dark Theme ==========*/
+--color-bg-dark: #020617;
+--color-bg-secondary-dark: #0f172a;
+--color-text-dark: #f8fafc;
+--color-text-muted-dark: #94a3b8;
+--color-border-dark: #1e293b;
+
 
   /*========== Shadows ==========*/
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -158,9 +161,9 @@ a {
   transition: color var(--transition-fast);
 }
 
-a:hover {
+/* a:hover {
   color: var(--color-accent-hover);
-}
+} */
 
 button {
   font-family: inherit;

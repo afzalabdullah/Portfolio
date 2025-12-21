@@ -78,8 +78,14 @@
 }
 
 .moon-icon {
-  color: #6366f1; /* Indigo for Moon */
-  fill: #6366f1;
+  color: var(--color-accent);       /* Gray 500 */
+  fill: var(--color-accent);        /* Gray 500 */
+  transition: color 0.3s ease, fill 0.3s ease; /* Optional smooth hover effect */
+}
+
+.moon-icon:hover {
+  color: var(--color-accent-hover); /* Gray 700 on hover */
+  fill: var(--color-accent-hover);
 }
 
 [data-theme="dark"] .theme-toggle {
