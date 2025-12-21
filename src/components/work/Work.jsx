@@ -150,21 +150,17 @@ const ProjectModal = ({ project, onClose }) => {
                   className="button button--large"
                 >
                   Visit Live Site
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
                 </a>
               )}
 
               <div className="project-modal__store-links">
                 {project.appLinks?.playStore && (
-                  <a href={project.appLinks.playStore} target="_blank" rel="noreferrer" className="modal-link">
+                  <a href={project.appLinks.playStore} target="_blank" rel="noreferrer">
                     Google Play
                   </a>
                 )}
                 {project.appLinks?.appStore && (
-                  <a href={project.appLinks.appStore} target="_blank" rel="noreferrer" className="modal-link">
+                  <a href={project.appLinks.appStore} target="_blank" rel="noreferrer">
                     App Store
                   </a>
                 )}
@@ -180,9 +176,10 @@ const ProjectModal = ({ project, onClose }) => {
 /* ===================== WORK ===================== */
 const Work = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null); // ✅ FIX
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const filterRefs = useRef({});
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
     const updateIndicator = () => {
@@ -194,15 +191,12 @@ const Work = () => {
           width: `${activeBtn.offsetWidth}px`,
         });
 
-        activeBtn.scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'nearest',
-        });
       }
     };
 
     updateIndicator();
+    isInitialMount.current = false;
+
     window.addEventListener('resize', updateIndicator);
     return () => window.removeEventListener('resize', updateIndicator);
   }, [selectedCategory]);
