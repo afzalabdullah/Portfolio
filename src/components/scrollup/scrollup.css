@@ -4,8 +4,9 @@
 
 .scrollup {
   position: fixed;
-  right: var(--spacing-8);
-  bottom: -40px; /* Hidden state */
+  left: var(--spacing-8);
+  bottom: -40px;
+  /* Hidden state */
   width: 50px;
   height: 50px;
   display: flex;
@@ -79,7 +80,8 @@
   stroke: var(--color-accent);
   stroke-width: 4px;
   stroke-linecap: round;
-  stroke-dasharray: 283; /* 2 * PI * R (45) */
+  stroke-dasharray: 283;
+  /* 2 * PI * R (45) */
   transition: stroke-dashoffset 0.1s ease;
 }
 
@@ -90,9 +92,9 @@
 /* Response Design */
 @media screen and (max-width: 768px) {
   .scrollup {
-    right: var(--spacing-6);
+    left: var(--spacing-6);
   }
-  
+
   .scrollup.show-scroll {
     bottom: var(--spacing-6);
   }

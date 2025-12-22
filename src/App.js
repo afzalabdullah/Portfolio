@@ -10,6 +10,7 @@ import Contact from "./components/Contact/Contact"
 import Footer from "./components/footer/Footer"
 import Scrollup from "./components/scrollup/Scrollup"
 import Work from "./components/work/Work"
+import AIChat from "./components/aichat/AIChat"
 
 const App = () => {
   const [theme, setTheme] = useState("light")
@@ -50,6 +51,7 @@ const App = () => {
       </main>
       <Footer />
       <Scrollup />
+      <AIChat />
     </div>
   )
 }
