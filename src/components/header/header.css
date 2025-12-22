@@ -271,50 +271,75 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--color-bg);
   pointer-events: none;
-  opacity: 0;
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(-100%);
 }
 
-.theme-wipe.active {
-  opacity: 1;
+.theme-wipe.active-down {
+  animation: wipeDown 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
-.theme-wipe.down {
-  transform: translateY(0);
+.theme-wipe.active-up {
+  animation: wipeUp 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
-.theme-wipe.up {
-  transform: translateY(-100%);
+.theme-wipe--dark {
+  background: var(--color-bg-dark);
+}
+
+.theme-wipe--light {
+  background: var(--color-bg-light);
+}
+
+@keyframes wipeDown {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes wipeUp {
+  0% {
+    transform: translateY(100%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
 }
 
 /* Glowing edge */
-.theme-wipe.active::after {
+.theme-wipe.active-down::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
+  bottom: 0;
   height: 4px;
-  background: linear-gradient(to right,
-      transparent,
-      var(--color-accent),
-      transparent);
+  background: linear-gradient(to right, transparent, var(--color-accent), transparent);
   box-shadow: 0 0 20px var(--color-accent);
-  animation: glow 1.5s infinite;
 }
 
-@keyframes glow {
-
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 1;
-  }
+.theme-wipe.active-up::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+  box-shadow: 0 0 20px var(--color-accent);
 }
 
 @media screen and (max-width: 992px) {

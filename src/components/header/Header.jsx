@@ -6,7 +6,8 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState("#home");
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isWipeActive, setIsWipeActive] = useState(false);
-  const [wipeDirection, setWipeDirection] = useState("down"); // "down" or "up"
+  const [wipeTheme, setWipeTheme] = useState("light");
+  const [wipeDirection, setWipeDirection] = useState("down");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,19 +50,20 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
   }, [navItems]);
 
   const handleToggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    const direction = newTheme === "dark" ? "down" : "up";
-
-    setWipeDirection(direction);
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setWipeTheme(nextTheme);
+    setWipeDirection(nextTheme === "dark" ? "down" : "up");
     setIsWipeActive(true);
 
-    // Apply new theme via parent function
-    toggleTheme();
+    // Move theme toggle to middle of animation (when screen is covered)
+    setTimeout(() => {
+      toggleTheme();
+    }, 500);
 
-    // Reset wipe after animation
+    // Reset wipe after animation completes
     setTimeout(() => {
       setIsWipeActive(false);
-    }, 1000); // Matches animation duration
+    }, 1000);
   };
 
   useEffect(() => {
@@ -76,7 +78,7 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
     <>
       {/* Curtain Wipe Animation */}
       <div
-        className={`theme-wipe ${isWipeActive ? "active" : ""} ${wipeDirection}`}
+        className={`theme-wipe ${isWipeActive ? `active-${wipeDirection}` : ""} theme-wipe--${wipeTheme}`}
       ></div>
 
       <header
