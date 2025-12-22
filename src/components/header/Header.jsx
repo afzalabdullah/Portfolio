@@ -5,6 +5,8 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isWipeActive, setIsWipeActive] = useState(false);
+  const [wipeDirection, setWipeDirection] = useState("down"); // "down" or "up"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +48,22 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, [navItems]);
 
+  const handleToggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    const direction = newTheme === "dark" ? "down" : "up";
+
+    setWipeDirection(direction);
+    setIsWipeActive(true);
+
+    // Apply new theme via parent function
+    toggleTheme();
+
+    // Reset wipe after animation
+    setTimeout(() => {
+      setIsWipeActive(false);
+    }, 1000); // Matches animation duration
+  };
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -56,6 +74,11 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
 
   return (
     <>
+      {/* Curtain Wipe Animation */}
+      <div
+        className={`theme-wipe ${isWipeActive ? "active" : ""} ${wipeDirection}`}
+      ></div>
+
       <header
         className={`header ${isScrolled ? "header--scrolled" : ""} ${isHidden ? "header--hidden" : ""}`}
       >
@@ -68,17 +91,44 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
             {/* Theme Toggle Button */}
             <button
               className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Toggle Theme"
+              onClick={handleToggleTheme}
+              aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                <svg
+                  className="moon-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
               ) : (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="5" />
-                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                <svg
+                  className="sun-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
               )}
             </button>
