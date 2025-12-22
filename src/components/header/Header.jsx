@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./header.css";
 
-const Header = ({ isHidden }) => {
+const Header = ({ isHidden, theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [theme, setTheme] = useState(
-    document.documentElement.getAttribute("data-theme") || "light"
-  );
-  const [isWipeActive, setIsWipeActive] = useState(false);
-  const [wipeDirection, setWipeDirection] = useState("down"); // "down" or "up"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,34 +46,6 @@ const Header = ({ isHidden }) => {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, [navItems]);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    const direction = newTheme === "dark" ? "down" : "up";
-
-    setWipeDirection(direction);
-    setIsWipeActive(true);
-
-    // Apply new theme
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("portfolio-theme", newTheme);
-
-    // Reset wipe after animation
-    setTimeout(() => {
-      setIsWipeActive(false);
-    }, 1000); // Matches animation duration
-
-    window.dispatchEvent(new Event("themechange"));
-  };
-
-  useEffect(() => {
-    const handleThemeChange = () => {
-      setTheme(document.documentElement.getAttribute("data-theme") || "light");
-    };
-    window.addEventListener("themechange", handleThemeChange);
-    return () => window.removeEventListener("themechange", handleThemeChange);
-  }, []);
-
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -89,15 +56,8 @@ const Header = ({ isHidden }) => {
 
   return (
     <>
-      {/* Curtain Wipe Animation */}
-      <div
-        className={`theme-wipe ${isWipeActive ? "active" : ""} ${wipeDirection}`}
-      ></div>
-
       <header
-        className={`header ${isScrolled ? "header--scrolled" : ""} ${
-          isHidden ? "header--hidden" : ""
-        }`}
+        className={`header ${isScrolled ? "header--scrolled" : ""} ${isHidden ? "header--hidden" : ""}`}
       >
         <nav className="nav container">
           <a href="#home" className="nav__logo">
@@ -105,46 +65,20 @@ const Header = ({ isHidden }) => {
           </a>
 
           <div className="nav__controls">
+            {/* Theme Toggle Button */}
             <button
               className="theme-toggle"
               onClick={toggleTheme}
-              aria-label="Toggle theme"
+              aria-label="Toggle Theme"
             >
               {theme === "light" ? (
-                <svg
-                  className="moon-icon"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                 </svg>
               ) : (
-                <svg
-                  className="sun-icon"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="5"></circle>
-                  <line x1="12" y1="1" x2="12" y2="3"></line>
-                  <line x1="12" y1="21" x2="12" y2="23"></line>
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                  <line x1="1" y1="12" x2="3" y2="12"></line>
-                  <line x1="21" y1="12" x2="23" y2="12"></line>
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
                 </svg>
               )}
             </button>
@@ -158,56 +92,54 @@ const Header = ({ isHidden }) => {
               <span></span>
             </button>
           </div>
-
-          <div className={`nav__overlay ${isMenuOpen ? "nav__overlay--open" : ""}`}>
-            <div className="nav__overlay-content container">
-              <ul className="nav__overlay-list">
-                {navItems.map((item) => (
-                  <li key={item.href} className="nav__overlay-item">
-                    <span className="nav__overlay-number">{item.id}</span>
-                    <a
-                      href={item.href}
-                      onClick={() => {
-                        setActiveSection(item.href);
-                        setMenuOpen(false);
-                      }}
-                      className={`nav__overlay-link ${
-                        activeSection === item.href ? "nav__overlay-link--active" : ""
-                      }`}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="nav__overlay-footer">
-                <div className="nav__overlay-socials">
-                  <a
-                    href="https://www.linkedin.com/in/engr-abdullah-afzal-96b962208/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="nav__overlay-social"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://github.com/afzalabdullah"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="nav__overlay-social"
-                  >
-                    GitHub
-                  </a>
-                </div>
-                <p className="nav__overlay-copy">
-                  © {new Date().getFullYear()} Abdullah. All rights reserved.
-                </p>
-              </div>
-            </div>
-          </div>
         </nav>
       </header>
+
+      <div className={`nav__overlay ${isMenuOpen ? "nav__overlay--open" : ""}`}>
+        <div className="nav__overlay-content container">
+          <ul className="nav__overlay-list">
+            {navItems.map((item) => (
+              <li key={item.href} className="nav__overlay-item">
+                <span className="nav__overlay-number">{item.id}</span>
+                <a
+                  href={item.href}
+                  onClick={() => {
+                    setActiveSection(item.href);
+                    setMenuOpen(false);
+                  }}
+                  className={`nav__overlay-link ${activeSection === item.href ? "nav__overlay-link--active" : ""}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="nav__overlay-footer">
+            <div className="nav__overlay-socials">
+              <a
+                href="https://www.linkedin.com/in/engr-abdullah-afzal-96b962208/"
+                target="_blank"
+                rel="noreferrer"
+                className="nav__overlay-social"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/afzalabdullah"
+                target="_blank"
+                rel="noreferrer"
+                className="nav__overlay-social"
+              >
+                GitHub
+              </a>
+            </div>
+            <p className="nav__overlay-copy">
+              © {new Date().getFullYear()} Abdullah. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -9,15 +9,15 @@ const Home = () => {
     <section className="home section" id="home">
       <div className="home__container container">
         <Social />
-        
+
         <Data />
 
         <div className="home__img-wrapper">
           <div className="home__img"></div>
           <div className="home__img-backdrop"></div>
         </div>
-        <ScrollDown />
       </div>
+      <ScrollDown />
     </section>
   );
 };

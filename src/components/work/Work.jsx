@@ -26,7 +26,7 @@ const ProjectCard = ({ project, idx, onClick }) => {
 
   return (
     <article
-      className={`project-card ${isHovered ? 'hover' : ''}`}
+      className="project-card"
       style={{ '--i': idx }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -50,13 +50,7 @@ const ProjectCard = ({ project, idx, onClick }) => {
         </div>
 
         <div className="project-card__overlay">
-          <div className="project-card__btn">
-            View Details
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
-          </div>
+          <div className="project-card__btn">View Details</div>
         </div>
 
         {hasMultiple && (
@@ -69,19 +63,6 @@ const ProjectCard = ({ project, idx, onClick }) => {
       <div className="project-card__info">
         <h3 className="project-card__title">{project.title}</h3>
         <p className="project-card__desc">{project.description}</p>
-
-        <div className="project-card__tags">
-          {project.tags?.slice(0, 3).map(tag => (
-            <span key={tag} className="project-card__tag">
-              {tag}
-            </span>
-          ))}
-          {project.tags?.length > 3 && (
-            <span className="project-card__tag">
-              +{project.tags.length - 3}
-            </span>
-          )}
-        </div>
       </div>
     </article>
   );
@@ -89,83 +70,148 @@ const ProjectCard = ({ project, idx, onClick }) => {
 
 /* ===================== PROJECT MODAL ===================== */
 const ProjectModal = ({ project, onClose }) => {
-  const [activeImg, setActiveImg] = useState(0);
+  const sliderRef = useRef(null);
 
+  const [activeImg, setActiveImg] = useState(0);
+  const THUMB_WINDOW_SIZE = 3;
+  const [thumbStart, setThumbStart] = useState(0);
+
+  // 🔒 Lock scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => (document.body.style.overflow = 'auto');
   }, []);
 
+  // 🔁 Reset on project change
+  useEffect(() => {
+    if (!project) return;
+
+    setActiveImg(0);
+    setThumbStart(0);
+
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft = 0;
+    }
+  }, [project]);
+
+  // 🚫 SAFETY RENDER GUARD (AFTER HOOKS)
+  if (!project || !project.images) return null;
+
+  const updateThumbWindow = (index) => {
+    if (index >= thumbStart + THUMB_WINDOW_SIZE) {
+      setThumbStart(
+        Math.min(
+          index - (THUMB_WINDOW_SIZE - 1),
+          project.images.length - THUMB_WINDOW_SIZE
+        )
+      );
+    } else if (index < thumbStart) {
+      setThumbStart(index);
+    }
+  };
+
+  const handleScroll = () => {
+    if (!sliderRef.current) return;
+
+    const index = Math.round(
+      sliderRef.current.scrollLeft / sliderRef.current.offsetWidth
+    );
+
+    setActiveImg(index);
+    updateThumbWindow(index);
+  };
+
+  const scrollToImage = (index) => {
+    if (!sliderRef.current) return;
+
+    sliderRef.current.scrollTo({
+      left: sliderRef.current.offsetWidth * index,
+      behavior: 'smooth',
+    });
+
+    setActiveImg(index);
+    updateThumbWindow(index);
+  };
+  const nextImage = () => {
+    if (activeImg < project.images.length - 1) {
+      scrollToImage(activeImg + 1);
+    }
+  };
+
+  const prevImage = () => {
+    if (activeImg > 0) {
+      scrollToImage(activeImg - 1);
+    }
+  };
+
   return (
     <div className="project-modal" onClick={onClose}>
       <div className="project-modal__content" onClick={e => e.stopPropagation()}>
-        <button className="project-modal__close" onClick={onClose}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
+        <button className="project-modal__close" onClick={onClose}>✕</button>
 
         <div className="project-modal__grid">
           <div className="project-modal__gallery">
-            <div className="project-modal__main-img">
-              <img src={project.images[activeImg]} alt={project.title} />
-            </div>
-
-            {project.images.length > 1 && (
-              <div className="project-modal__thumbs">
-                {project.images.map((img, i) => (
-                  <div
-                    key={i}
-                    className={`project-modal__thumb ${i === activeImg ? 'active' : ''}`}
-                    onClick={() => setActiveImg(i)}
+            <div className="project-modal__slider-container">
+              {project.images.length > 1 && (
+                <>
+                  <button
+                    className={`project-modal__nav project-modal__nav--prev ${activeImg === 0 ? 'disabled' : ''}`}
+                    onClick={prevImage}
                   >
-                    <img src={img} alt="" />
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                  </button>
+                  <button
+                    className={`project-modal__nav project-modal__nav--next ${activeImg === project.images.length - 1 ? 'disabled' : ''}`}
+                    onClick={nextImage}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </button>
+                </>
+              )}
+              <div
+                className="project-modal__slider"
+                ref={sliderRef}
+                onScroll={handleScroll}
+              >
+                {project.images.map((img, i) => (
+                  <div key={i} className="project-modal__slide">
+                    <img src={img} alt={`${project.title} ${i + 1}`} />
                   </div>
                 ))}
               </div>
-            )}
+            </div>
+
+            {/* SLIDING WINDOW THUMBNAILS */}
+            <div className="project-modal__thumbs">
+              {project.images
+                .slice(thumbStart, thumbStart + THUMB_WINDOW_SIZE)
+                .map((img, i) => {
+                  const actualIndex = thumbStart + i;
+
+                  return (
+                    <div
+                      key={actualIndex}
+                      className={`project-modal__thumb ${actualIndex === activeImg ? 'active' : ''
+                        }`}
+                      onClick={() => scrollToImage(actualIndex)}
+                    >
+                      <img src={img} alt="" />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
 
           <div className="project-modal__details">
             <span className="project-modal__category">{project.category}</span>
             <h2 className="project-modal__title">{project.title}</h2>
-
-            <div className="project-modal__tags">
-              {project.tags?.map(tag => (
-                <span key={tag} className="project-modal__tag">#{tag}</span>
-              ))}
-            </div>
-
-            <div className="project-modal__description">
+            <p className="project-modal__description">
               {project.longDescription || project.description}
-            </div>
-
-            <div className="project-modal__actions">
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="button button--large"
-                >
-                  Visit Live Site
-                </a>
-              )}
-
-              <div className="project-modal__store-links">
-                {project.appLinks?.playStore && (
-                  <a href={project.appLinks.playStore} target="_blank" rel="noreferrer">
-                    Google Play
-                  </a>
-                )}
-                {project.appLinks?.appStore && (
-                  <a href={project.appLinks.appStore} target="_blank" rel="noreferrer">
-                    App Store
-                  </a>
-                )}
-              </div>
-            </div>
+            </p>
           </div>
         </div>
       </div>
@@ -176,64 +222,29 @@ const ProjectModal = ({ project, onClose }) => {
 /* ===================== WORK ===================== */
 const Work = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState(null); // ✅ FIX
-  const [indicatorStyle, setIndicatorStyle] = useState({});
-  const filterRefs = useRef({});
-  const isInitialMount = useRef(true);
-
-  useEffect(() => {
-    const updateIndicator = () => {
-      const activeBtn = filterRefs.current[selectedCategory];
-
-      if (activeBtn) {
-        setIndicatorStyle({
-          left: `${activeBtn.offsetLeft}px`,
-          width: `${activeBtn.offsetWidth}px`,
-        });
-
-      }
-    };
-
-    updateIndicator();
-    isInitialMount.current = false;
-
-    window.addEventListener('resize', updateIndicator);
-    return () => window.removeEventListener('resize', updateIndicator);
-  }, [selectedCategory]);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects =
     selectedCategory === 'All'
       ? projects
       : projects.filter(p =>
-          p.category.includes(selectedCategory.split(' ')[0])
-        );
+        p.category.includes(selectedCategory.split(' ')[0])
+      );
 
   return (
     <section className="work section" id="work">
       <div className="container">
-        <div className="text-center mb-16">
-          <span className="section__label">Portfolio</span>
-          <h2 className="section__title">Featured Projects</h2>
-          <p className="section__subtitle">
-            A showcase of innovative solutions and digital craftsmanship
-          </p>
-        </div>
-
         <div className="work__filters">
-          <div className="work__filters-inner">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                ref={el => (filterRefs.current[cat] = el)}
-                className={`work__filter-btn ${selectedCategory === cat ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
-
-            <div className="work__filter-indicator" style={indicatorStyle} />
-          </div>
+          {categories.map(cat => (
+            <button
+              key={cat}
+              className={`work__filter-btn ${selectedCategory === cat ? 'active' : ''
+                }`}
+              onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         <div className="work__grid">

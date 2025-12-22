@@ -28,12 +28,18 @@ const App = () => {
     document.documentElement.setAttribute("data-theme", theme)
     // Save theme preference to localStorage
     localStorage.setItem("portfolio-theme", theme)
+    // Dispatch event for components that might not be using props (like curtain wipe)
+    window.dispatchEvent(new Event("themechange"));
   }, [theme])
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "dark" ? "light" : "dark"))
+  }
 
   return (
     <div className="app-container">
       <MouseBackgroundEffect theme={theme} />
-      <Header isHidden={isCVModalOpen} />
+      <Header isHidden={isCVModalOpen} theme={theme} toggleTheme={toggleTheme} />
       <main className="main">
         <Home />
         <About isCVModalOpen={isCVModalOpen} setIsCVModalOpen={setIsCVModalOpen} />
