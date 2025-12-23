@@ -5,10 +5,12 @@ import "react-pdf/dist/Page/TextLayer.css";
 import "./cvmodal.css";
 
 // PDF.js worker (Vite compatible)
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   "pdfjs-dist/build/pdf.worker.min.mjs",
+//   import.meta.url
+// ).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = 
+  `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const CVModal = ({ isOpen, onClose, cvUrl }) => {
   const [numPages, setNumPages] = useState(null);
