@@ -5,7 +5,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 import "./cvmodal.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc =
-  `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+  `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
 const CVModal = ({ isOpen, onClose, cvUrl }) => {
   const [numPages, setNumPages] = useState(null);
