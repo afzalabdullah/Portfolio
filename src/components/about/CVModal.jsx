@@ -3,14 +3,10 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import "./cvmodal.css";
+import { pdfjs } from "react-pdf";
 
-// PDF.js worker (Vite compatible)
-// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-//   "pdfjs-dist/build/pdf.worker.min.mjs",
-//   import.meta.url
-// ).toString();
-pdfjs.GlobalWorkerOptions.workerSrc = 
-  `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc =
+  `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const CVModal = ({ isOpen, onClose, cvUrl }) => {
   const [numPages, setNumPages] = useState(null);
