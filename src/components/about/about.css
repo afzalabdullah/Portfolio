@@ -4,7 +4,7 @@
 
 .about {
   padding: var(--spacing-24) 0;
-  background: var(--color-bg);
+  /* background: var(--color-bg); */
   position: relative;
   overflow: hidden;
 }

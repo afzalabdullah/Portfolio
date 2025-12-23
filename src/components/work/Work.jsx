@@ -223,6 +223,9 @@ const ProjectModal = ({ project, onClose }) => {
 const Work = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [indicatorStyle, setIndicatorStyle] = useState({});
+  const filterRefs = useRef({});
+  const containerRef = useRef(null);
 
   const filteredProjects =
     selectedCategory === 'All'
@@ -231,20 +234,35 @@ const Work = () => {
         p.category.includes(selectedCategory.split(' ')[0])
       );
 
+  useEffect(() => {
+    const activeButton = filterRefs.current[selectedCategory];
+    if (activeButton && containerRef.current) {
+      const { offsetLeft, offsetWidth } = activeButton;
+      setIndicatorStyle({
+        left: `${offsetLeft}px`,
+        width: `${offsetWidth}px`,
+      });
+    }
+  }, [selectedCategory]);
+
   return (
     <section className="work section" id="work">
       <div className="container">
         <div className="work__filters">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              className={`work__filter-btn ${selectedCategory === cat ? 'active' : ''
-                }`}
-              onClick={() => setSelectedCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
+          <div className="work__filters-inner" ref={containerRef}>
+            <div className="work__filter-indicator" style={indicatorStyle}></div>
+            {categories.map(cat => (
+              <button
+                key={cat}
+                ref={el => (filterRefs.current[cat] = el)}
+                className={`work__filter-btn ${selectedCategory === cat ? 'active' : ''
+                  }`}
+                onClick={() => setSelectedCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="work__grid">
