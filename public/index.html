@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">  <!-- Added lang="en" for accessibility & SEO -->
   <head>
     <meta charset="UTF-8" />
 
     <!-- Favicon -->
-    <link rel="icon" href="%PUBLIC_URL%/profile.jpg" />
+    <link rel="icon" href="%PUBLIC_URL%/profile.png" />
+    <!-- Additional favicon sizes for better compatibility -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/profile.jpg" />
 
     <!-- Browser Compatibility -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,21 +14,25 @@
     <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical (replace with your actual live URL) -->
+    <link rel="canonical" href="https://abdullahportfolio.vercel.app" />
+
+    <!-- Theme color (optional, matches your site design) -->
+    <meta name="theme-color" content="#ffffff" />
+
     <!-- Google Adsense -->
     <meta name="google-adsense-account" content="ca-pub-7334058961842274" />
 
     <!-- Primary SEO Meta Tags -->
-    <title>Abdullah – Full Stack Developer | ASP.NET Core, Flutter, Node.js</title>
+    <title>Abdullah | Software Engineer</title>
     <meta
       name="description"
-      content="Abdullah is a Full Stack Developer specializing in ASP.NET Core, Flutter, Node.js, and modern web & mobile application development. View portfolio, projects, and contact details."
-    />
-    <meta
-      name="keywords"
-      content="Abdullah Developer, Full Stack Developer, ASP.NET Core Developer, Flutter Developer, Node.js Developer, Web Developer, Mobile App Developer, Software Engineer Portfolio"
+      content="Abdullah is a skilled Full Stack Developer specializing in ASP.NET Core, Flutter, Node.js, and modern web/mobile apps. Explore projects, skills, and hire for scalable solutions."
     />
     <meta name="author" content="Abdullah" />
-    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -35,9 +41,13 @@
       property="og:description"
       content="Explore Abdullah's portfolio featuring web & mobile applications built using ASP.NET Core, Flutter, Node.js, and modern technologies."
     />
-    <meta property="og:image" content="%PUBLIC_URL%/profile.jpg" />
-    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:image" content="https://abdullahportfolio.vercel.app/profile.jpg" /> <!-- Use absolute URL -->
+    <meta property="og:image:alt" content="Abdullah - Full Stack Developer Profile" />
+    <meta property="og:image:width" content="1200" /> <!-- Recommended size -->
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://abdullahportfolio.vercel.app" />
     <meta property="og:site_name" content="Abdullah Portfolio" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -46,7 +56,10 @@
       name="twitter:description"
       content="Full Stack Developer experienced in ASP.NET Core, Flutter, Node.js, and scalable backend systems."
     />
-    <meta name="twitter:image" content="%PUBLIC_URL%/profile.jpg" />
+    <meta name="twitter:image" content="https://abdullahportfolio.vercel.app/profile.jpg" /> <!-- Absolute URL -->
+    <meta name="twitter:image:alt" content="Abdullah - Full Stack Developer Profile" />
+    <meta name="twitter:site" content="@yourtwitterhandle" /> <!-- Optional: add if you have one -->
+    <meta name="twitter:creator" content="@yourtwitterhandle" />
 
     <!-- Boxicons -->
     <link

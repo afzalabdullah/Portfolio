@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import "./about.css";
 import Info from "./Info";
 import GithubContribution from "./GithubContribution";
 import CVModal from "./CVModal";
-import AboutImage from "../../assets/profile.jpg";
+import AboutImage from "../../assets/profile.png";
 
 const About = ({ isCVModalOpen, setIsCVModalOpen }) => {
   const cvUrl = "/Abdullah_Resume.pdf";

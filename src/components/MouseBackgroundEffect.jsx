@@ -1,54 +1,81 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const MouseBackgroundEffect = () => {
+  const canvasRef = useRef(null);
+  const particles = useRef([]);
   const mousePos = useRef({ x: 0, y: 0 });
-  const delayedPos = useRef({ x: 0, y: 0 });
-  const glowRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
     const handleMouseMove = (e) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
-      if (!isVisible) setIsVisible(true);
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const addParticle = () => {
+      particles.current.push({
+        x: mousePos.current.x,
+        y: mousePos.current.y,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        life: 1,
+        decay: 0.015 + Math.random() * 0.01,
+        size: 4 + Math.random() * 8,
+        color: `hsl(${200 + Math.random() * 100}, 80%, 60%)`,
+      });
+    };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
-
-    let animationFrameId;
-
-    const animate = () => {
-      const lerpFactor = 0.15;
-
-      delayedPos.current.x += (mousePos.current.x - delayedPos.current.x) * lerpFactor;
-      delayedPos.current.y += (mousePos.current.y - delayedPos.current.y) * lerpFactor;
-
-      if (glowRef.current) {
-        // subtle scaling based on distance from center
-        const scale = 1 + Math.sin(Date.now() * 0.002) * 0.05;
-
-        glowRef.current.style.transform = `translate3d(${delayedPos.current.x}px, ${delayedPos.current.y}px, 0) translate(-50%, -50%) scale(${scale})`;
+    let lastTime = 0;
+    const animate = (time) => {
+      if (!ctx || !canvas) return;
+      if (time - lastTime > 30) {
+        addParticle();
+        lastTime = time;
       }
 
-      animationFrameId = requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.current = particles.current.filter((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+
+        if (p.life > 0) {
+          ctx.globalAlpha = p.life;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+          ctx.fill();
+          return true;
+        }
+        return false;
+      });
+
+      requestAnimationFrame(animate);
     };
 
-    animate();
+    window.addEventListener("mousemove", handleMouseMove);
+    requestAnimationFrame(animate);
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [isVisible]);
+  }, []);
 
   return (
-    <div
+    <canvas
+      ref={canvasRef}
       style={{
         position: "fixed",
         top: 0,
@@ -57,54 +84,8 @@ const MouseBackgroundEffect = () => {
         height: "100%",
         pointerEvents: "none",
         zIndex: -1,
-        overflow: "hidden",
       }}
-    >
-      <div
-        ref={glowRef}
-        style={{
-          position: "absolute",
-          width: "400px",
-          height: "400px",
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.8s ease",
-          willChange: "transform",
-        }}
-      >
-        {/* Core Glow */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "radial-gradient(circle, var(--mouse-glow-primary) 0%, transparent 50%)",
-            opacity: 0.7,
-            filter: "blur(25px)",
-          }}
-        />
-
-        {/* Neon Atmosphere */}
-        <div
-          style={{
-            position: "absolute",
-            inset: "-15%",
-            background: "radial-gradient(circle, var(--mouse-glow-secondary) 0%, transparent 60%)",
-            opacity: 0.4,
-            filter: "blur(50px)",
-          }}
-        />
-
-        {/* Accent Flicker */}
-        <div
-          style={{
-            position: "absolute",
-            inset: "10%",
-            background: "radial-gradient(circle, var(--mouse-glow-accent) 0%, transparent 70%)",
-            opacity: 0.45,
-            filter: "blur(35px)",
-          }}
-        />
-      </div>
-    </div>
+    />
   );
 };
 
