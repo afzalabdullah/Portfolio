@@ -407,7 +407,7 @@
   .hero__description { margin-left: auto; margin-right: auto; }
   .hero__actions { justify-content: center; }
   .hero__social-sidebar {
-    position: fixed; left: 1rem;
+    display: none;
   }
   .hero__visual { order: -1; height: 360px; }
   .hero__profile-frame { width: 240px; height: 240px; }
@@ -420,12 +420,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .hero__social-sidebar {
-    position: fixed; left: 0.75rem;
-  }
-  .hero__social-sidebar::before,
-  .hero__social-sidebar::after { display: none; }
-  .hero__social-link { width: 38px; height: 38px; }
   .hero__role-text { min-width: 140px; }
   .hero__float-card { padding: 10px 14px; }
   .hero__float-card-number { font-size: 1.2rem; }

@@ -242,3 +242,23 @@
     grid-column: auto;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .lang-donut-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .lang-legend {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-1);
+  }
+
+  .lang-donut__count {
+    font-size: var(--font-size-2xl);
+  }
+
+  .github-card__body {
+    padding: var(--spacing-4);
+  }
+}

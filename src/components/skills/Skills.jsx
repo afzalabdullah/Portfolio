@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  SiHtml5, SiCss3, SiJavascript, SiReact, SiBootstrap, SiFlutter,
-  SiNodedotjs, SiDart, SiPhp, SiMysql, SiDotnet, SiLaravel,
+  SiHtml5, SiJavascript, SiReact, SiFlutter,
+  SiNodedotjs, SiDart, SiMysql, SiDotnet, SiLaravel,
   SiGit, SiPostman, SiFigma, SiFirebase, SiDocker, SiTailwindcss,
-  SiMongodb, SiPostgresql, SiExpress, SiNextdotjs
+  SiMongodb, SiNextdotjs
 } from "react-icons/si";
 
 import "./skills.css";

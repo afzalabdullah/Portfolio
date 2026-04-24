@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './aichat.css';
 
-const AIChat = () => {
+const AIChat = ({ hidden }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
         { id: 1, type: 'ai', text: "Hi! I'm Abdullah's AI assistant. How can I help you today?" }
@@ -61,7 +61,7 @@ const AIChat = () => {
     };
 
     return (
-        <div className="ai-chat-container">
+        <div className={`ai-chat-container ${hidden ? 'ai-chat--hidden' : ''}`}>
             {isOpen && (
                 <div className="ai-chat-window">
                     <div className="ai-chat-header">

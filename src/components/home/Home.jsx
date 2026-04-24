@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React,{ useEffect, useRef, useState } from "react";
 import "./home.css";
 import Social from "./Social";
 import ScrollDown from "./ScrollDown";
@@ -10,12 +10,12 @@ const Home = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const roles = [
+  const roles = React.useMemo(() => [
     "Senior Software Engineer",
     "System Design Engineer",
     "Full Stack Architect",
     "Enterprise Solutions Lead",
-  ];
+  ], []);
 
   // Entrance animation trigger
   useEffect(() => {
@@ -47,7 +47,7 @@ const Home = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [typedRole, isDeleting, currentRoleIndex]);
+  }, [typedRole, isDeleting, currentRoleIndex, roles]);
 
   // Floating particles
   const particles = Array.from({ length: 20 }, (_, i) => ({

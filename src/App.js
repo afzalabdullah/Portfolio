@@ -50,8 +50,8 @@ const App = () => {
         <Contact />
       </main>
       <Footer />
-      <Scrollup />
-      <AIChat />
+      <Scrollup hidden={isCVModalOpen} />
+      <AIChat hidden={isCVModalOpen} />
     </div>
   )
 }

@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 900;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0;
@@ -25,6 +25,12 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+
+.scrollup.scrollup--hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Glassmorphism Logic */

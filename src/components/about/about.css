@@ -258,4 +258,13 @@
   .about__actions {
     flex-direction: column;
   }
+
+  .about__info {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+
+  .about__sidebar {
+    max-width: 100%;
+  }
 }
