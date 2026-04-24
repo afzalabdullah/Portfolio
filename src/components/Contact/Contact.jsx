@@ -53,11 +53,11 @@ const Contact = () => {
   return (
     <section className="contact section" id="contact">
       <div className="container">
-        <div className="text-center mb-16">
+        <header className="section__header">
           <span className="section__label">Collaborate</span>
           <h2 className="section__title">Let's Create Together</h2>
           <p className="section__subtitle">I'm currently available for freelance work and full-time opportunities.</p>
-        </div>
+        </header>
 
         <div className="contact__container grid">
           <div className="contact__info">

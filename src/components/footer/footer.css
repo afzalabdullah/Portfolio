@@ -61,18 +61,18 @@
   gap: var(--spacing-4);
   padding: var(--spacing-5) var(--spacing-10);
   background: var(--color-accent);
-  color: white;
+  color: var(--color-bg);
   font-weight: var(--font-weight-bold);
   border-radius: var(--radius-full);
   transition: all var(--transition-base);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
 
 .footer__cta-btn:hover {
   background: var(--color-accent-hover);
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .footer__cta-btn svg {
@@ -176,9 +176,9 @@
 .footer__social-link:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: white;
+  color: var(--color-bg);
   transform: translateY(-4px);
-  box-shadow: 0 8px 15px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Bottom Bar */

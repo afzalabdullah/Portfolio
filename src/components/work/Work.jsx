@@ -26,8 +26,8 @@ const ProjectCard = ({ project, idx, onClick }) => {
 
   return (
     <article
-      className="project-card"
-      style={{ '--i': idx }}
+      className="work-card"
+      style={{ '--i': idx, animationDelay: `${idx * 0.08}s` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
@@ -35,34 +35,57 @@ const ProjectCard = ({ project, idx, onClick }) => {
       }}
       onClick={() => onClick(project)}
     >
-      <div className="project-card__image-box">
-        <div className="project-card__category">{project.category}</div>
+      {/* Image Area */}
+      <div className="work-card__visual">
+        <div className="work-card__badge">{project.category}</div>
 
-        <div className="project-card__gallery">
+        <div className="work-card__gallery">
           {project.images.map((img, i) => (
             <img
               key={i}
               src={img}
               alt={project.title}
-              className={`project-card__img ${i === currentSlide ? 'active' : ''}`}
+              className={`work-card__img ${i === currentSlide ? 'active' : ''}`}
             />
           ))}
         </div>
 
-        <div className="project-card__overlay">
-          <div className="project-card__btn">View Details</div>
+        <div className="work-card__overlay">
+          <div className="work-card__cta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+            View Details
+          </div>
         </div>
 
         {hasMultiple && (
-          <div className="project-card__counter">
-            {currentSlide + 1} / {project.images.length}
+          <div className="work-card__counter">
+            <span className="work-card__counter-current">{currentSlide + 1}</span>
+            <span className="work-card__counter-sep">/</span>
+            <span>{project.images.length}</span>
           </div>
         )}
       </div>
 
-      <div className="project-card__info">
-        <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__desc">{project.description}</p>
+      {/* Info */}
+      <div className="work-card__body">
+        <h3 className="work-card__title">{project.title}</h3>
+        <p className="work-card__desc">{project.description}</p>
+
+        {project.tags && (
+          <div className="work-card__tags">
+            {project.tags.slice(0, 3).map((tag, i) => (
+              <span key={i} className="work-card__tag">{tag}</span>
+            ))}
+            {project.tags.length > 3 && (
+              <span className="work-card__tag work-card__tag--more">+{project.tags.length - 3}</span>
+            )}
+          </div>
+        )}
       </div>
     </article>
   );
@@ -248,6 +271,24 @@ const Work = () => {
   return (
     <section className="work section" id="work">
       <div className="container">
+        {/* Redesigned Header */}
+        <div className="work__header">
+          <span className="work__label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            Portfolio
+          </span>
+          <h2 className="work__title">
+            Selected <span className="work__title-accent">Projects</span>
+          </h2>
+          <p className="work__subtitle">
+            Enterprise solutions, mobile apps, and AI platforms — built with precision.
+          </p>
+        </div>
+
+        {/* Filters */}
         <div className="work__filters">
           <div className="work__filters-inner" ref={containerRef}>
             <div className="work__filter-indicator" style={indicatorStyle}></div>
@@ -255,8 +296,7 @@ const Work = () => {
               <button
                 key={cat}
                 ref={el => (filterRefs.current[cat] = el)}
-                className={`work__filter-btn ${selectedCategory === cat ? 'active' : ''
-                  }`}
+                className={`work__filter-btn ${selectedCategory === cat ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(cat)}
               >
                 {cat}
@@ -265,6 +305,15 @@ const Work = () => {
           </div>
         </div>
 
+        {/* Project Count */}
+        <div className="work__count">
+          <span className="work__count-number">{filteredProjects.length}</span>
+          <span className="work__count-text">
+            {filteredProjects.length === 1 ? 'Project' : 'Projects'}
+          </span>
+        </div>
+
+        {/* Grid */}
         <div className="work__grid">
           {filteredProjects.map((project, idx) => (
             <ProjectCard

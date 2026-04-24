@@ -24,7 +24,7 @@ const Footer = () => {
               Abdullah<span>.</span>
             </a>
             <p className="footer__description">
-              Building digital experiences that combine innovative design with robust engineering. Based in Pakistan, working globally.
+              Architecting large-scale distributed systems and enterprise platforms. Senior Software Engineer & System Design Engineer based in Pakistan, engineering globally.
             </p>
             <div className="footer__social">
               <a href="https://www.linkedin.com/in/engr-abdullah-afzal-96b962208/" className="footer__social-link" target="_blank" rel="noreferrer" aria-label="GitHub">

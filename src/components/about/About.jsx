@@ -10,43 +10,20 @@ const About = ({ isCVModalOpen, setIsCVModalOpen }) => {
   return (
     <section className="about section" id="about">
       <div className="container">
-        <div className="text-center mb-16">
-          <span className="section__label">A Glimpse Into My World</span>
-          <h2 className="section__title">The Engineer Behind the Code</h2>
-          <p className="section__subtitle">
-            Blending technical rigor with creative vision to build the future of digital experiences.
-          </p>
-        </div>
+        <div className="about__layout">
+          {/* Left Column: Visuals & Intro */}
+          <div className="about__sidebar">
+            <div className="about__visual">
+              <div className="about__img-container">
+                <img src={AboutImage} alt="Profile" className="about__img" />
+                <div className="about__img-glow"></div>
+              </div>
 
-        <div className="about__container">
-          <div className="about__visual">
-            <div className="about__img-container">
-              <img src={AboutImage} alt="Profile" className="about__img" />
-              <div className="about__img-overlay"></div>
-            </div>
-            <div className="about__experience-badge">
-              <span className="badge__number">03+</span>
-              <span className="badge__text">Years of<br />Experience</span>
-            </div>
-          </div>
-
-          <div className="about__content">
-            <div className="about__text-block">
-              <p className="about__description">
-                I'm a <strong>Full-Stack Software Engineer</strong> with a focus on building
-                high-performance, scalable applications. My philosophy is simple: 
-                <em> write clean code, solve complex problems, and always prioritize the user.</em>
-              </p>
-              <p className="about__description">
-                With expertise spanning the modern web ecosystem, I enjoy transforming 
-                intricate requirements into elegant, robust solutions that drive 
-                real-world impact.
-              </p>
             </div>
 
-            <Info />
-            
-            <GithubContribution />
+            <div className="about__info-grid">
+              <Info />
+            </div>
 
             <div className="about__actions">
               <a
@@ -66,6 +43,40 @@ const About = ({ isCVModalOpen, setIsCVModalOpen }) => {
                 Interactive CV
               </button>
             </div>
+          </div>
+
+          {/* Right Column: Narrative & Dashboard */}
+          <div className="about__main">
+            <header className="about__header">
+              <span className="about__tag">The Architect</span>
+              <h2 className="about__title">Abdullah <span className="highlight">Afzal</span></h2>
+              <div className="about__terminal">
+                <div className="terminal__header">
+                  <div className="terminal__dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="terminal__title">bash — bio</div>
+                </div>
+                <div className="terminal__body">
+                  <p className="terminal__line"><span className="prompt">$</span> whoami</p>
+                  <p className="terminal__text">
+                    I am a Senior Software Engineer & System Design Engineer specializing 
+                    in architecting large-scale distributed systems, high-availability 
+                    infrastructure, and enterprise-grade platforms that serve millions.
+                  </p>
+                  <p className="terminal__line"><span className="prompt">$</span> cat philosophy.txt</p>
+                  <p className="terminal__text">
+                    "Design systems that scale. Architect solutions that endure. 
+                    Engineer every layer — from infrastructure to interface."
+                  </p>
+                </div>
+              </div>
+            </header>
+
+            <div className="about__github-wrapper">
+              <GithubContribution />
+            </div>
+
           </div>
         </div>
       </div>

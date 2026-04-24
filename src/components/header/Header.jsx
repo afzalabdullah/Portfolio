@@ -55,12 +55,10 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
     setWipeDirection(nextTheme === "dark" ? "down" : "up");
     setIsWipeActive(true);
 
-    // Move theme toggle to middle of animation (when screen is covered)
     setTimeout(() => {
       toggleTheme();
     }, 500);
 
-    // Reset wipe after animation completes
     setTimeout(() => {
       setIsWipeActive(false);
     }, 1000);
@@ -85,22 +83,39 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
         className={`header ${isScrolled ? "header--scrolled" : ""} ${isHidden ? "header--hidden" : ""}`}
       >
         <nav className="nav container">
+          {/* Logo */}
           <a href="#home" className="nav__logo">
-            Abdullah<span>.</span>
+            <span className="nav__logo-text">Abdullah</span>
+            <span className="nav__logo-dot">.</span>
           </a>
 
+          {/* Desktop Navigation */}
+          <div className="nav__desktop">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setActiveSection(item.href)}
+                className={`nav__link ${activeSection === item.href ? "nav__link--active" : ""}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Right Controls */}
           <div className="nav__controls">
-            {/* Theme Toggle Button */}
+            {/* Theme Toggle */}
             <button
-              className="theme-toggle"
+              className="nav__theme-btn"
               onClick={handleToggleTheme}
               aria-label="Toggle theme"
             >
-              {theme === "light" ? (
+              <div className="nav__theme-icons">
                 <svg
-                  className="moon-icon"
-                  width="20"
-                  height="20"
+                  className={`nav__theme-icon ${theme === "light" ? "nav__theme-icon--visible" : ""}`}
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -110,11 +125,10 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
                 >
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-              ) : (
                 <svg
-                  className="sun-icon"
-                  width="20"
-                  height="20"
+                  className={`nav__theme-icon ${theme === "dark" ? "nav__theme-icon--visible" : ""}`}
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -132,14 +146,16 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
                   <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
-              )}
+              </div>
             </button>
 
+            {/* Hamburger */}
             <button
-              className={`nav__trigger ${isMenuOpen ? "nav__trigger--active" : ""}`}
+              className={`nav__burger ${isMenuOpen ? "nav__burger--active" : ""}`}
               onClick={() => setMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
+              <span></span>
               <span></span>
               <span></span>
             </button>
@@ -147,11 +163,17 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
         </nav>
       </header>
 
+      {/* Fullscreen Overlay Menu */}
       <div className={`nav__overlay ${isMenuOpen ? "nav__overlay--open" : ""}`}>
+        <div className="nav__overlay-bg"></div>
         <div className="nav__overlay-content container">
           <ul className="nav__overlay-list">
-            {navItems.map((item) => (
-              <li key={item.href} className="nav__overlay-item">
+            {navItems.map((item, idx) => (
+              <li
+                key={item.href}
+                className="nav__overlay-item"
+                style={{ transitionDelay: `${0.3 + idx * 0.08}s` }}
+              >
                 <span className="nav__overlay-number">{item.id}</span>
                 <a
                   href={item.href}
@@ -163,6 +185,7 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
                 >
                   {item.label}
                 </a>
+                <div className="nav__overlay-line"></div>
               </li>
             ))}
           </ul>
@@ -175,6 +198,7 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
                 rel="noreferrer"
                 className="nav__overlay-social"
               >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 LinkedIn
               </a>
               <a
@@ -183,11 +207,12 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
                 rel="noreferrer"
                 className="nav__overlay-social"
               >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 GitHub
               </a>
             </div>
             <p className="nav__overlay-copy">
-              © {new Date().getFullYear()} Abdullah. All rights reserved.
+              © {new Date().getFullYear()} Abdullah Afzal
             </p>
           </div>
         </div>

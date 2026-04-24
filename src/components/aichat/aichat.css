@@ -15,7 +15,7 @@
     height: 60px;
     border-radius: var(--radius-full);
     background: var(--color-accent);
-    color: white;
+    color: var(--color-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,7 +82,7 @@
 .ai-chat-header {
     padding: var(--spacing-4) var(--spacing-6);
     background: var(--color-accent);
-    color: white;
+    color: var(--color-bg);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -91,11 +91,11 @@
 .ai-chat-header h3 {
     font-size: var(--font-size-lg);
     margin: 0;
-    color: white;
+    color: var(--color-bg);
 }
 
 .ai-chat-close {
-    color: white;
+    color: var(--color-bg);
     opacity: 0.8;
     cursor: pointer;
     transition: opacity 0.2s;
@@ -147,7 +147,7 @@
 .message-user {
     align-self: flex-end;
     background: var(--color-accent);
-    color: white;
+    color: var(--color-bg);
     border-bottom-right-radius: 4px;
 }
 
@@ -242,7 +242,7 @@
     height: 44px;
     border-radius: var(--radius-lg);
     background: var(--color-accent);
-    color: white;
+    color: var(--color-bg);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -17,6 +17,11 @@ const MouseBackgroundEffect = () => {
     };
 
     const addParticle = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const color = isDark 
+        ? `hsla(${30 + Math.random() * 20}, 90%, 60%, ${0.3 + Math.random() * 0.3})` 
+        : `hsla(${30 + Math.random() * 20}, 80%, 45%, ${0.15 + Math.random() * 0.15})`;
+
       particles.current.push({
         x: mousePos.current.x,
         y: mousePos.current.y,
@@ -25,7 +30,7 @@ const MouseBackgroundEffect = () => {
         life: 1,
         decay: 0.015 + Math.random() * 0.01,
         size: 4 + Math.random() * 8,
-        color: `hsl(${200 + Math.random() * 100}, 80%, 60%)`,
+        color: color,
       });
     };
 
