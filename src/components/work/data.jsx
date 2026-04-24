@@ -9,8 +9,11 @@ import KodeKineticsHome from "../../assets/images/kodekinetics/kodekinetics.png"
 import NoLimitsDashboard from "../../assets/images/nolimits/nolimits2.png";
 import NoLimitsMembers from "../../assets/images/nolimits/nolimits3.png";
 
-import NoorAndSonsRFQ from "../../assets/images/noorandsons/RFQ-Automation.png";
-import NoorAndSonsInventory from "../../assets/images/noorandsons/inventory.png";
+import Nexora1 from "../../assets/images/ai-powerd-rfq-automation/1.png";
+import Nexora2 from "../../assets/images/ai-powerd-rfq-automation/2.png";
+import Nexora3 from "../../assets/images/ai-powerd-rfq-automation/3.png";
+import Nexora4 from "../../assets/images/ai-powerd-rfq-automation/4.png";
+import Nexora5 from "../../assets/images/ai-powerd-rfq-automation/5.png";
 
 // Expense Tracker Images
 import ExpenseTracker1 from "../../assets/images/expensetracker/exp-1.png";
@@ -38,10 +41,31 @@ import AIDBQuery3 from "../../assets/images/ai-db-query/db-qu-3.png";
 
 import hrmsDashboard from "../../assets/images/hrms/dashboard.png";
 
+// Shaheen Track Images
+import Shaheen1 from "../../assets/images/shaheen-track/1.png";
+import Shaheen2 from "../../assets/images/shaheen-track/2.png";
+import Shaheen3 from "../../assets/images/shaheen-track/3.png";
+import Shaheen4 from "../../assets/images/shaheen-track/4.png";
+import Shaheen5 from "../../assets/images/shaheen-track/5.png";
+import Shaheen6 from "../../assets/images/shaheen-track/6.png";
+import Shaheen7 from "../../assets/images/shaheen-track/7.png";
+
 
 export const projects = [
   {
     id: 1,
+    title: "Shaheen Track - Fleet Management System",
+    description:
+      "A comprehensive real-time vehicle tracking and fleet management system with live telemetry, geofencing, fuel monitoring, and advanced analytics.",
+    longDescription:
+      "Shaheen Track is a professional-grade fleet management solution designed for real-time monitoring and security. \n\nKey features include:\n- Live Vehicle Tracking with high-precision telemetry.\n- Geofencing and instant alerts for unauthorized movements.\n- Fuel consumption monitoring and efficiency reports.\n- Detailed analytics for driver behavior and vehicle health.\n- Multi-organization support with advanced RBAC (Role-Based Access Control).",
+    images: [Shaheen1, Shaheen2, Shaheen3, Shaheen4, Shaheen5, Shaheen6, Shaheen7],
+    category: "Web App",
+    link: "https://shaheentrack.pk",
+    tags: ["Fleet Management", "Real-time Tracking", "Web App", "Geofencing"],
+  },
+  {
+    id: 2,
     title: "Tawil - The Community Network",
     description:
       "All-in-one Muslim community app to connect, discover masjids, halal restaurants, events, jobs, and strengthen the Ummah.",
@@ -57,7 +81,7 @@ export const projects = [
     tags: ["Community", "Mobile App", "Flutter"],
   },
   {
-    id: 2,
+    id: 3,
     title: "Kode Kinetics",
     description:
       "Professional website for Kode Kinetics Software Agency showcasing services, portfolio, and client work.",
@@ -67,7 +91,7 @@ export const projects = [
     tags: ["Next.js", "React", "Agency"],
   },
   {
-    id: 3,
+    id: 4,
     title: "No Limits Fitness Studio - Gym Management System",
     description:
       "Complete gym management system with member registration, payments, attendance (ZKTeco integration), staff salaries, WhatsApp/Email reminders, and detailed reports.",
@@ -76,16 +100,18 @@ export const projects = [
     tags: ["ASP.NET Core MVC", "MSSQL", "Gym Management"],
   },
   {
-    id: 4,
-    title: "Noor & Sons Inventory & AI-Powered RFQ System",
+    id: 5,
+    title: "NEXORA - The Intelligence Platform",
     description:
-      "AI-powered sales, inventory, and RFQ/quotation management system with performance tracking, conversion rates, price recommendations, and client visit logging.",
-    images: [NoorAndSonsRFQ, NoorAndSonsInventory],
+      "RFQ Automation along with Inventory Management",
+    longDescription:
+      "Nexora is an intelligent platform designed to streamline business operations through automated RFQ processing and comprehensive inventory tracking. It features AI-powered sales insights, performance tracking, conversion rate optimization, and automated price recommendations to drive business growth.",
+    images: [Nexora1, Nexora2, Nexora3, Nexora4, Nexora5],
     category: "Web App",
-    tags: ["AI", "Inventory", "Sales", "RFQ"],
+    tags: ["AI", "Inventory", "Sales", "RFQ", "Automation"],
   },
   {
-    id: 5,
+    id: 6,
     title: "Expense Tracker App",
     description:
       "Clean and modern expense tracker app built with Flutter and Firebase for personal finance management.",
@@ -94,7 +120,7 @@ export const projects = [
     tags: ["Finance", "Mobile App"],
   },
   {
-    id: 6,
+    id: 7,
     title: "Facial Recognition Attendance System (TPL Trakker)",
     description:
       "Employee attendance system using FaceNet model for accurate and secure facial recognition.",
@@ -103,7 +129,7 @@ export const projects = [
     tags: ["Facial Recognition", "FaceNet", "Attendance"],
   },
   {
-    id: 7,
+    id: 8,
     title: "HRMS & Payroll System",
     description:
       "Full-featured HR and payroll system with ZKTeco device integration for real-time attendance, salary, loans, advances, hiring/firing, and more.",
@@ -112,7 +138,7 @@ export const projects = [
     tags: ["HRMS", "Payroll", "ZKTeco"],
   },
   {
-    id: 8,
+    id: 9,
     title: "AI-Powered Database Query Chat App",
     description:
       "Chat with your database using natural language. Supports multiple databases and provides intelligent SQL query generation.",
