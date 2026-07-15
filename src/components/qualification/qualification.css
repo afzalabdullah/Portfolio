@@ -1,5 +1,5 @@
 /* ===================================
-   QUALIFICATION - PREMIUM TIMELINE
+   QUALIFICATION — ALTERNATING TIMELINE
    =================================== */
 
 /* === HEADER === */
@@ -25,7 +25,7 @@
 }
 
 .qual__title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   color: var(--color-text);
   letter-spacing: -0.04em;
@@ -44,7 +44,7 @@
   display: flex;
   justify-content: center;
   gap: var(--spacing-2);
-  margin-bottom: var(--spacing-16);
+  margin-bottom: var(--spacing-12);
   background: var(--color-bg-secondary);
   padding: 6px;
   border-radius: var(--radius-xl);
@@ -86,50 +86,53 @@
 /* === TIMELINE === */
 .qual__timeline {
   position: relative;
-  max-width: 900px;
+  max-width: 780px;
   margin: 0 auto;
-  padding: var(--spacing-4) 0;
+  padding: 0 0 var(--spacing-4);
 }
 
+/* Center line */
 .qual__timeline-line {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, transparent, var(--color-border) 10%, var(--color-border) 90%, transparent);
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-2), transparent);
   transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 /* === CARDS === */
 .qual__card {
   position: relative;
   display: flex;
-  align-items: flex-start;
   width: 50%;
-  padding-bottom: var(--spacing-12);
-  animation: qualCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  padding-bottom: var(--spacing-8);
+  animation: cardFadeIn 0.5s ease both;
 }
 
-@keyframes qualCardIn {
-  from { opacity: 0; transform: translateY(20px); }
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Left cards */
 .qual__card--left {
-  padding-right: var(--spacing-12);
   justify-content: flex-end;
+  padding-right: var(--spacing-10);
 }
 
+/* Right cards */
 .qual__card--right {
   margin-left: 50%;
-  padding-left: var(--spacing-12);
+  padding-left: var(--spacing-10);
 }
 
 /* === NODE === */
 .qual__node {
   position: absolute;
-  top: 8px;
+  top: var(--spacing-6);
   z-index: 5;
 }
 
@@ -146,98 +149,71 @@
   height: 18px;
   border-radius: 50%;
   background: var(--color-bg);
-  border: 3px solid var(--color-border);
+  border: 3px solid var(--color-accent);
   transition: all var(--transition-base);
 }
 
 .qual__node-dot--active {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px var(--color-accent-light), 0 0 16px var(--color-accent-glow);
-  animation: activePulse 2.5s ease-in-out infinite;
-}
-
-@keyframes activePulse {
-  0%, 100% { box-shadow: 0 0 0 4px var(--color-accent-light), 0 0 16px var(--color-accent-glow); }
-  50% { box-shadow: 0 0 0 8px var(--color-accent-light), 0 0 24px var(--color-accent-glow); }
-}
-
-.qual__card:hover .qual__node-dot {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  transform: scale(1.3);
+  box-shadow: 0 0 0 4px var(--color-accent-glow), 0 0 12px var(--color-accent-glow);
 }
 
 /* === CARD BODY === */
 .qual__card-body {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-6) var(--spacing-8);
+  padding: var(--spacing-6);
   transition: all var(--transition-base);
-  box-shadow: var(--shadow-sm);
-  width: 100%;
   position: relative;
 }
 
 [data-theme="dark"] .qual__card-body {
-  background: rgba(17, 24, 39, 0.6);
-  border: 1px solid rgba(31, 41, 55, 0.6);
+  background: rgba(17, 24, 39, 0.5);
+  border-color: rgba(31, 41, 55, 0.5);
 }
 
-/* Arrow connector */
+/* Arrow connector — left card (right side arrow) */
 .qual__card--left .qual__card-body::after {
   content: '';
   position: absolute;
-  top: 14px;
-  right: -7px;
-  width: 12px;
-  height: 12px;
-  background: #ffffff;
-  border-right: 1px solid rgba(226, 232, 240, 0.8);
-  border-top: 1px solid rgba(226, 232, 240, 0.8);
-  transform: rotate(45deg);
+  right: -8px;
+  top: var(--spacing-6);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid var(--color-border);
   transition: all var(--transition-base);
 }
 
-[data-theme="dark"] .qual__card--left .qual__card-body::after {
-  background: #111827;
-  border-right: 1px solid rgba(31, 41, 55, 0.6);
-  border-top: 1px solid rgba(31, 41, 55, 0.6);
-}
-
+/* Arrow connector — right card (left side arrow) */
 .qual__card--right .qual__card-body::after {
   content: '';
   position: absolute;
-  top: 14px;
-  left: -7px;
-  width: 12px;
-  height: 12px;
-  background: #ffffff;
-  border-left: 1px solid rgba(226, 232, 240, 0.8);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-  transform: rotate(45deg);
+  left: -8px;
+  top: var(--spacing-6);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--color-border);
   transition: all var(--transition-base);
-}
-
-[data-theme="dark"] .qual__card--right .qual__card-body::after {
-  background: #111827;
-  border-left: 1px solid rgba(31, 41, 55, 0.6);
-  border-bottom: 1px solid rgba(31, 41, 55, 0.6);
 }
 
 .qual__card:hover .qual__card-body {
   border-color: var(--color-accent);
-  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.1);
-  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.08);
+  transform: translateY(-3px);
 }
 
 .qual__card--left:hover .qual__card-body::after {
-  border-color: var(--color-accent);
+  border-left-color: var(--color-accent);
 }
 
 .qual__card--right:hover .qual__card-body::after {
-  border-color: var(--color-accent);
+  border-right-color: var(--color-accent);
 }
 
 /* Card inner elements */
@@ -250,20 +226,20 @@
 }
 
 .qual__card-title {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--color-text);
   line-height: 1.3;
 }
 
 .qual__card-badge {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #10b981;
   background: rgba(16,185,129,0.1);
-  padding: 3px 10px;
+  padding: 3px 8px;
   border-radius: var(--radius-full);
   white-space: nowrap;
   border: 1px solid rgba(16,185,129,0.15);
@@ -280,7 +256,7 @@
 .qual__card-detail {
   font-size: 13px;
   color: var(--color-text-muted);
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-3);
   line-height: 1.5;
 }
 
@@ -297,17 +273,17 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   color: var(--color-text-muted);
 }
 
 .qual__card-duration {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--color-accent);
   background: var(--color-accent-light);
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: var(--radius-sm);
 }
 
@@ -315,6 +291,7 @@
    RESPONSIVE
    =================================== */
 @media screen and (max-width: 768px) {
+  /* Collapse to single column with left line */
   .qual__timeline-line {
     left: 20px;
   }
@@ -335,7 +312,7 @@
     right: auto;
   }
 
-  /* Remove arrows on mobile */
+  /* Hide arrows on mobile */
   .qual__card--left .qual__card-body::after,
   .qual__card--right .qual__card-body::after {
     display: none;
@@ -364,7 +341,7 @@
   }
 
   .qual__card-body {
-    padding: var(--spacing-5) var(--spacing-5);
+    padding: var(--spacing-4);
   }
 
   .qual__card-top {

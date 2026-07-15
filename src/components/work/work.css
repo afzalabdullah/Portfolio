@@ -1,5 +1,5 @@
 /* ===================================
-   WORK SECTION - PREMIUM REDESIGN
+   WORK SECTION - CLASSIC CARD GRID
    =================================== */
 
 .work {
@@ -30,7 +30,7 @@
 }
 
 .work__title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   color: var(--color-text);
   letter-spacing: -0.04em;
@@ -45,7 +45,7 @@
 }
 
 .work__subtitle {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--color-text-muted);
   max-width: 540px;
   margin: 0 auto;
@@ -135,16 +135,15 @@
 /* === GRID === */
 .work__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-8);
 }
 
-/* === PROJECT CARD === */
+/* === PROJECT CARD — classic layout === */
 .work-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  border-radius: var(--radius-2xl);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all var(--transition-base);
   cursor: pointer;
@@ -154,57 +153,39 @@
   animation: cardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+[data-theme="dark"] .work-card {
+  background: rgba(17, 24, 39, 0.5);
+  border: 1px solid rgba(31, 41, 55, 0.5);
+}
+
 @keyframes cardReveal {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-[data-theme="dark"] .work-card {
-  background: rgba(17, 24, 39, 0.6);
-  border: 1px solid rgba(31, 41, 55, 0.6);
-}
-
 .work-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
   border-color: var(--color-accent);
 }
 
-/* Gradient border on hover */
-.work-card::after {
+[data-theme="dark"] .work-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Shine effect */
+.work-card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: linear-gradient(135deg, var(--color-accent), transparent 40%, transparent 60%, var(--color-accent-2));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity var(--transition-base);
-  pointer-events: none;
-}
-
-.work-card:hover::after {
-  opacity: 1;
-}
-
-/* Shine sweep */
-.work-card::before {
-  content: "";
-  position: absolute;
+  left: -100%;
   top: 0;
-  left: -150%;
-  width: 100%;
+  width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
   transition: 0.8s;
   z-index: 10;
   pointer-events: none;
 }
-
 .work-card:hover::before {
   left: 150%;
 }
@@ -212,8 +193,8 @@
 /* Visual / Image Area */
 .work-card__visual {
   position: relative;
-  height: 260px;
-  background: var(--color-bg-secondary);
+  height: 220px;
+  background: var(--color-bg);
   overflow: hidden;
 }
 
@@ -231,7 +212,7 @@
   object-fit: cover;
   opacity: 0;
   transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .work-card__img.active {
@@ -246,30 +227,30 @@
 /* Category Badge */
 .work-card__badge {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 5px 14px;
+  top: 14px;
+  left: 14px;
+  padding: 4px 12px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   border-radius: var(--radius-full);
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   z-index: 10;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 }
 
-/* Overlay */
+/* Overlay — kept for CTA button */
 .work-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.2) 50%, transparent);
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 24px;
+  padding-bottom: 20px;
   opacity: 0;
   transition: all var(--transition-base);
   z-index: 5;
@@ -280,16 +261,16 @@
 }
 
 .work-card__cta {
-  background: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
   color: white;
-  padding: 10px 24px;
+  padding: 8px 20px;
   border-radius: var(--radius-full);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transform: translateY(16px);
+  gap: 6px;
+  transform: translateY(12px);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
@@ -301,11 +282,11 @@
 /* Counter */
 .work-card__counter {
   position: absolute;
-  bottom: 14px;
-  right: 14px;
+  bottom: 12px;
+  right: 12px;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: var(--radius-sm);
   color: white;
   font-size: 10px;
@@ -317,7 +298,7 @@
 }
 
 .work-card__counter-current {
-  color: var(--color-accent);
+  color: var(--color-accent-2);
   font-weight: 800;
 }
 
@@ -326,17 +307,17 @@
   margin: 0 1px;
 }
 
-/* Body */
+/* Body — always visible */
 .work-card__body {
-  padding: var(--spacing-6) var(--spacing-6) var(--spacing-6);
+  padding: var(--spacing-5) var(--spacing-6);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
+  gap: var(--spacing-2);
   flex-grow: 1;
 }
 
 .work-card__title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-text);
   line-height: 1.3;
@@ -347,7 +328,7 @@
 }
 
 .work-card__desc {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
   line-height: 1.6;
   display: -webkit-box;
@@ -361,7 +342,7 @@
 .work-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   margin-top: auto;
   padding-top: var(--spacing-3);
   border-top: 1px solid var(--color-border);
@@ -372,14 +353,14 @@
   font-weight: 600;
   color: var(--color-accent-2);
   background: var(--color-accent-light);
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: var(--radius-full);
   letter-spacing: 0.3px;
 }
 
 .work-card__tag--more {
   color: var(--color-text-muted);
-  background: var(--color-bg-secondary);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
 }
 
@@ -669,20 +650,20 @@
   }
 
   .work-card__visual {
-    height: 220px;
+    height: 200px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .work-card__body {
-    padding: var(--spacing-5);
+    padding: var(--spacing-4);
   }
 
   .work-card__title {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
 
   .work-card__visual {
-    height: 200px;
+    height: 180px;
   }
 }

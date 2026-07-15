@@ -60,13 +60,13 @@ const About = ({ about, isCVModalOpen, setIsCVModalOpen }) => {
                   <div className="terminal__title">bash — bio</div>
                 </div>
                 <div className="terminal__body">
-                  <p className="terminal__line"><span className="prompt">$</span> whoami</p>
+                  <p className="terminal__line"><span className="prompt">$</span> <span className="cmd">whoami</span></p>
                   <p className="terminal__text">
-                    {about?.whoami || "I am a Senior Software Engineer..."}
+                    <span className="string">"{about?.whoami || "I am a Senior Software Engineer..."}"</span>
                   </p>
-                  <p className="terminal__line"><span className="prompt">$</span> cat philosophy.txt</p>
+                  <p className="terminal__line"><span className="prompt">$</span> <span className="cmd">cat</span> <span className="param">philosophy.txt</span></p>
                   <p className="terminal__text">
-                    "{about?.philosophy || "Design systems that scale..."}"
+                    <span className="comment"># {about?.philosophy || "Design systems that scale..."}</span>
                   </p>
                   <p className="terminal__line terminal__line--blink"><span className="prompt">$</span></p>
                 </div>

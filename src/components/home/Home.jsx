@@ -100,7 +100,7 @@ const Home = ({ hero }) => {
         {/* Left Content */}
         <div className="hero__content">
           {/* Main Title */}
-          <h1 className="hero__title" style={{ animationDelay: "0.3s" }}>
+          <h1 className="hero__title">
             <span className="hero__title-line hero__title-line--1">
               <span className="hero__title-hi">Hi, I'm</span>
             </span>
@@ -114,7 +114,7 @@ const Home = ({ hero }) => {
           </h1>
 
           {/* Typewriter Role */}
-          <div className="hero__role" style={{ animationDelay: "0.5s" }}>
+          <div className="hero__role">
             <span className="hero__role-bracket">{"<"}</span>
             <span className="hero__role-text">{typedRole}</span>
             <span className="hero__role-cursor">|</span>
@@ -122,25 +122,36 @@ const Home = ({ hero }) => {
           </div>
 
           {/* Description */}
-          <p className="hero__description" style={{ animationDelay: "0.7s" }}>
+          <p className="hero__description">
             {hero?.description || "Designing and engineering large-scale distributed systems..."}
           </p>
 
+          {/* Stat Badges — horizontal row */}
+          <div className="hero__stats">
+            <div className="hero__float-card hero__float-card--1">
+              <span className="hero__float-card-number">{hero?.experience || "3+"}</span>
+              <span className="hero__float-card-label">Years Exp.</span>
+            </div>
+            <div className="hero__float-card hero__float-card--2">
+              <span className="hero__float-card-number">{hero?.projectsCount || "20+"}</span>
+              <span className="hero__float-card-label">Projects</span>
+            </div>
+            <div className="hero__float-card hero__float-card--3">
+              <span className="hero__float-card-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span className="hero__float-card-label">{hero?.status || "Open to Work"}</span>
+            </div>
+          </div>
+
           {/* CTA Buttons */}
-          <div className="hero__actions" style={{ animationDelay: "0.9s" }}>
+          <div className="hero__actions">
             <a href="#contact" className="hero__btn hero__btn--primary">
               <span className="hero__btn-text">Let's Connect</span>
               <span className="hero__btn-icon">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="7" y1="17" x2="17" y2="7"></line>
                   <polyline points="7 7 17 7 17 17"></polyline>
                 </svg>
@@ -150,16 +161,15 @@ const Home = ({ hero }) => {
               <span className="hero__btn-text">View Projects</span>
             </a>
           </div>
+
+          {/* Social Links — horizontal row */}
+          <div className="hero__social-row">
+            <Social />
+          </div>
         </div>
 
         {/* Right Side - Profile Visual */}
         <div className="hero__visual">
-          {/* Orbiting rings */}
-          <div className="hero__orbit hero__orbit--1"></div>
-          <div className="hero__orbit hero__orbit--2"></div>
-          <div className="hero__orbit hero__orbit--3"></div>
-
-          {/* Profile Image */}
           <div className="hero__profile-frame">
             <div className="hero__profile-glow"></div>
             <div 
@@ -167,31 +177,6 @@ const Home = ({ hero }) => {
               style={{ backgroundImage: `url(${hero?.profileImg || "/profile.png"})` }}
             ></div>
             <div className="hero__profile-border"></div>
-          </div>
-
-          {/* Floating stat cards */}
-          <div className="hero__float-card hero__float-card--1">
-            <span className="hero__float-card-number">{hero?.experience || "3+"}</span>
-            <span className="hero__float-card-label">Years Exp.</span>
-          </div>
-          <div className="hero__float-card hero__float-card--2">
-            <span className="hero__float-card-number">{hero?.projectsCount || "20+"}</span>
-            <span className="hero__float-card-label">Projects</span>
-          </div>
-          <div className="hero__float-card hero__float-card--3">
-            <span className="hero__float-card-icon">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </span>
-            <span className="hero__float-card-label">{hero?.status || "Open to Work"}</span>
           </div>
         </div>
       </div>
