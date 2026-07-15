@@ -40,7 +40,7 @@ const AdminPanel = ({ data, onClose, onSave }) => {
       setIsSaving(true);
       setError(null);
       setSuccess(null);
-      const res = await axios.post("/api/portfolio", formData, {
+      await axios.post("/api/portfolio", formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSuccess("Changes saved successfully!");
