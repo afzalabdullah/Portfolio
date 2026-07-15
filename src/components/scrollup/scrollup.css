@@ -51,9 +51,9 @@
 }
 
 .scrollup:hover .scrollup__icon-wrapper {
-  background: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
   color: white;
-  border-color: var(--color-accent);
+  border-color: transparent;
   transform: scale(0.9);
   box-shadow: 0 0 20px var(--color-accent-light);
 }

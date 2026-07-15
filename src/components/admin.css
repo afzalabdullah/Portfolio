@@ -135,7 +135,7 @@
 }
 
 .admin-nav button:hover {
-  background: rgba(245, 158, 11, 0.05);
+  background: var(--color-accent-light);
   color: var(--color-accent);
 }
 

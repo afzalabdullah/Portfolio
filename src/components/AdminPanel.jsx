@@ -310,6 +310,20 @@ const AdminPanel = ({ data, onClose, onSave }) => {
                   onChange={e => handleHeroChange("roles", e.target.value.split(",").map(r => r.trim()))} 
                 />
               </div>
+              <div className="admin-form-group">
+                <label>Profile Image (URL)</label>
+                <div className="admin-file-upload-row">
+                  <input type="text" value={formData.hero.profileImg || ""} onChange={e => handleHeroChange("profileImg", e.target.value)} />
+                  <input 
+                    type="file" 
+                    id="hero-img-upload" 
+                    accept="image/*" 
+                    onChange={e => handleFileUpload(e, "image", (url) => handleHeroChange("profileImg", url))}
+                    style={{ display: "none" }}
+                  />
+                  <label htmlFor="hero-img-upload" className="button">Upload Image</label>
+                </div>
+              </div>
             </div>
           )}
 
@@ -351,6 +365,20 @@ const AdminPanel = ({ data, onClose, onSave }) => {
                     style={{ display: "none" }}
                   />
                   <label htmlFor="cv-upload" className="button">Upload PDF</label>
+                </div>
+              </div>
+              <div className="admin-form-group">
+                <label>Profile Image (URL)</label>
+                <div className="admin-file-upload-row">
+                  <input type="text" value={formData.about.profileImg || ""} onChange={e => handleAboutChange("profileImg", e.target.value)} />
+                  <input 
+                    type="file" 
+                    id="about-img-upload" 
+                    accept="image/*" 
+                    onChange={e => handleFileUpload(e, "image", (url) => handleAboutChange("profileImg", url))}
+                    style={{ display: "none" }}
+                  />
+                  <label htmlFor="about-img-upload" className="button">Upload Image</label>
                 </div>
               </div>
             </div>

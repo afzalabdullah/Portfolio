@@ -68,6 +68,7 @@ const About = ({ about, isCVModalOpen, setIsCVModalOpen }) => {
                   <p className="terminal__text">
                     "{about?.philosophy || "Design systems that scale..."}"
                   </p>
+                  <p className="terminal__line terminal__line--blink"><span className="prompt">$</span></p>
                 </div>
               </div>
             </header>

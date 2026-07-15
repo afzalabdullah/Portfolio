@@ -17,8 +17,9 @@
 
 /* Category Card */
 .skills__category-card {
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: var(--radius-2xl);
   padding: var(--spacing-8);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -26,10 +27,15 @@
   perspective: 1000px;
 }
 
+[data-theme="dark"] .skills__category-card {
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid rgba(31, 41, 55, 0.6);
+}
+
 .skills__category-card:hover {
   border-color: var(--color-accent);
   transform: translateY(-8px) rotateX(2deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.12);
 }
 
 .category-card__header {
@@ -39,7 +45,10 @@
 .category-card__title {
   font-size: var(--font-size-xl);
   font-weight: 800;
-  color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: var(--spacing-2);
   letter-spacing: -0.5px;
 }
@@ -93,8 +102,8 @@
 .progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
-  background: var(--color-accent);
-  transition: width 1s ease-in-out;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Level Specific Widths */

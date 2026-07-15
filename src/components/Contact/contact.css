@@ -38,18 +38,24 @@
   align-items: center;
   gap: var(--spacing-6);
   padding: var(--spacing-6);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: var(--radius-2xl);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
 }
 
+[data-theme="dark"] .contact__card {
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid rgba(31, 41, 55, 0.6);
+}
+
 .contact__card:hover {
   transform: translateX(8px);
   border-color: var(--color-accent);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.1);
 }
 
 .contact__card-icon {
@@ -121,7 +127,7 @@
 .contact__form-input {
   width: 100%;
   padding: var(--spacing-4) var(--spacing-5);
-  background: var(--color-bg-secondary);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   color: var(--color-text);
@@ -130,10 +136,14 @@
   outline: none;
 }
 
+[data-theme="dark"] .contact__form-input {
+  background: rgba(17, 24, 39, 0.4);
+}
+
 .contact__form-input:focus {
   border-color: var(--color-accent);
   background: var(--color-bg);
-  box-shadow: 0 0 0 4px var(--color-accent-light);
+  box-shadow: 0 0 0 4px var(--color-accent-light), 0 0 16px var(--color-accent-glow);
 }
 
 .contact__form-label {

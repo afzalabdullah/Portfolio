@@ -31,6 +31,12 @@ const Scrollup = ({ hidden }) => {
       aria-label="Scroll to top"
     >
       <svg className="scrollup__svg" width="100%" height="100%" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="scrollProgressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="var(--color-accent)" />
+            <stop offset="100%" stopColor="var(--color-accent-2)" />
+          </linearGradient>
+        </defs>
         <circle 
           className="scrollup__track" 
           cx="50" cy="50" r="45" 
@@ -39,7 +45,8 @@ const Scrollup = ({ hidden }) => {
           className="scrollup__progress" 
           cx="50" cy="50" r="45"
           style={{
-            strokeDashoffset: 283 - (scrollProgress * 283) / 100
+            strokeDashoffset: 283 - (scrollProgress * 283) / 100,
+            stroke: "url(#scrollProgressGradient)"
           }}
         />
       </svg>
