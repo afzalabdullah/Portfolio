@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './work.css';
-import { projects } from './data';
 
 const categories = ['All', 'Flutter', 'Website', 'Web App', 'AI'];
 
@@ -243,7 +242,8 @@ const ProjectModal = ({ project, onClose }) => {
 };
 
 /* ===================== WORK ===================== */
-const Work = () => {
+const Work = ({ projectsData }) => {
+  const projects = projectsData || [];
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
   const [indicatorStyle, setIndicatorStyle] = useState({});

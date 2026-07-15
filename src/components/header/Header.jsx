@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./header.css";
 
-const Header = ({ isHidden, theme, toggleTheme }) => {
+const Header = ({ isHidden, theme, toggleTheme, onAdminClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -84,7 +84,7 @@ const Header = ({ isHidden, theme, toggleTheme }) => {
       >
         <nav className="nav container">
           {/* Logo */}
-          <a href="#home" className="nav__logo">
+          <a href="#home" className="nav__logo" onDoubleClick={onAdminClick}>
             <span className="nav__logo-text">Abdullah</span>
             <span className="nav__logo-dot">.</span>
           </a>

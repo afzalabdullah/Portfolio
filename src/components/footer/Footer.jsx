@@ -1,7 +1,7 @@
 import React from "react";
 import "./footer.css";
 
-const Footer = () => {
+const Footer = ({ onAdminClick }) => {
   return (
     <footer className="footer">
       <div className="footer__container container">
@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="footer__content grid">
           {/* Brand Column */}
           <div className="footer__col brand">
-            <a href="#home" className="footer__logo">
+            <a href="#home" className="footer__logo" onDoubleClick={onAdminClick}>
               Abdullah<span>.</span>
             </a>
             <p className="footer__description">

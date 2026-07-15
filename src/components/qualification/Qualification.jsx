@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./qualification.css";
 
-const Qualification = () => {
+const Qualification = ({ qualificationData }) => {
   const [activeTab, setActiveTab] = useState("experience");
 
   const calculateDuration = (start, end = null) => {
+    if (!start) return "";
     const startDate = new Date(start);
     const endDate = end ? new Date(end) : new Date();
 
@@ -25,69 +26,8 @@ const Qualification = () => {
     return parts.join(" ");
   };
 
-  const education = [
-    {
-      title: "PAF - KIET",
-      subtitle: "BE Software Engineering",
-      detail: "GPA 3.45 / 4.0",
-      date: "2020 – 2024",
-      start: "2020-01-01",
-      end: "2024-01-01",
-    },
-    {
-      title: "Govt. National College",
-      subtitle: "Intermediate",
-      detail: "Pre-Engineering",
-      date: "2018 – 2020",
-      start: "2018-01-01",
-      end: "2020-01-01",
-    },
-    {
-      title: "Seerat-E-Complex",
-      subtitle: "Matriculation",
-      detail: "Science",
-      date: "2008 – 2018",
-      start: "2008-01-01",
-      end: "2018-01-01",
-    },
-  ];
-
-  const experience = [
-    {
-      title: "Kode Kinetics (USA)",
-      subtitle: "Senior Software Engineer",
-      detail: "Remote — Architecting scalable distributed systems",
-      date: "Dec 2024 – Present",
-      start: "2024-12-01",
-      end: null,
-      current: true,
-    },
-    {
-      title: "Rajby Textiles Pvt. Ltd",
-      subtitle: "Senior Software Engineer – ERP",
-      detail: "Enterprise architecture & system design",
-      date: "Nov 2024 – Present",
-      start: "2024-11-01",
-      end: null,
-      current: true,
-    },
-    {
-      title: "TPL Trakker Ltd.",
-      subtitle: "Assistant Manager – R&D",
-      detail: "Research & development leadership",
-      date: "Aug 2024 – Nov 2024",
-      start: "2024-08-01",
-      end: "2024-11-01",
-    },
-    {
-      title: "TPL Trakker Ltd.",
-      subtitle: "Trainee Engineer – R&D",
-      detail: "IoT & telematics solutions",
-      date: "May 2023 – Aug 2024",
-      start: "2023-05-01",
-      end: "2024-08-01",
-    },
-  ];
+  const education = qualificationData?.education || [];
+  const experience = qualificationData?.experience || [];
 
   const tabs = [
     {

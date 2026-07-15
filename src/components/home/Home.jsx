@@ -3,19 +3,19 @@ import "./home.css";
 import Social from "./Social";
 import ScrollDown from "./ScrollDown";
 
-const Home = () => {
+const Home = ({ hero }) => {
   const heroRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [typedRole, setTypedRole] = useState("");
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const roles = React.useMemo(() => [
+  const roles = React.useMemo(() => hero?.roles || [
     "Senior Software Engineer",
     "System Design Engineer",
     "Full Stack Architect",
     "Enterprise Solutions Lead",
-  ], []);
+  ], [hero?.roles]);
 
   // Entrance animation trigger
   useEffect(() => {
@@ -105,10 +105,10 @@ const Home = () => {
               <span className="hero__title-hi">Hi, I'm</span>
             </span>
             <span className="hero__title-line hero__title-line--2">
-              <span className="hero__title-name">Abdullah</span>
+              <span className="hero__title-name">{hero?.name || "Abdullah"}</span>
             </span>
             <span className="hero__title-line hero__title-line--3">
-              <span className="hero__title-accent">Afzal</span>
+              <span className="hero__title-accent">{hero?.accent || "Afzal"}</span>
               <span className="hero__title-dot">.</span>
             </span>
           </h1>
@@ -118,15 +118,12 @@ const Home = () => {
             <span className="hero__role-bracket">{"<"}</span>
             <span className="hero__role-text">{typedRole}</span>
             <span className="hero__role-cursor">|</span>
-            <span className="hero__role-bracket">{"/>"})</span>
+            <span className="hero__role-bracket">{"/>"}</span>
           </div>
 
           {/* Description */}
           <p className="hero__description" style={{ animationDelay: "0.7s" }}>
-            Designing and engineering large-scale distributed systems with a focus on{" "}
-            <strong>system architecture</strong>, <strong>scalability</strong>, and{" "}
-            <strong>high-availability infrastructure</strong>. Based in Pakistan, engineering
-            for global impact.
+            {hero?.description || "Designing and engineering large-scale distributed systems..."}
           </p>
 
           {/* CTA Buttons */}
@@ -165,17 +162,20 @@ const Home = () => {
           {/* Profile Image */}
           <div className="hero__profile-frame">
             <div className="hero__profile-glow"></div>
-            <div className="hero__profile-img"></div>
+            <div 
+              className="hero__profile-img" 
+              style={{ backgroundImage: `url(${hero?.profileImg || "/profile.png"})` }}
+            ></div>
             <div className="hero__profile-border"></div>
           </div>
 
           {/* Floating stat cards */}
           <div className="hero__float-card hero__float-card--1">
-            <span className="hero__float-card-number">3+</span>
+            <span className="hero__float-card-number">{hero?.experience || "3+"}</span>
             <span className="hero__float-card-label">Years Exp.</span>
           </div>
           <div className="hero__float-card hero__float-card--2">
-            <span className="hero__float-card-number">20+</span>
+            <span className="hero__float-card-number">{hero?.projectsCount || "20+"}</span>
             <span className="hero__float-card-label">Projects</span>
           </div>
           <div className="hero__float-card hero__float-card--3">
@@ -191,7 +191,7 @@ const Home = () => {
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </span>
-            <span className="hero__float-card-label">Open to Work</span>
+            <span className="hero__float-card-label">{hero?.status || "Open to Work"}</span>
           </div>
         </div>
       </div>

@@ -1,14 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './aichat.css';
 
-const AIChat = ({ hidden }) => {
+const AIChat = ({ chatData, hidden }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { id: 1, type: 'ai', text: "Hi! I'm Abdullah's AI assistant. How can I help you today?" }
+        { id: 1, type: 'ai', text: chatData?.welcomeMessage || "Hi! I'm Abdullah's AI assistant. How can I help you today?" }
     ]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
+
+    // Sync welcome message if chatData updates
+    useEffect(() => {
+        if (chatData?.welcomeMessage) {
+            setMessages(prev => {
+                if (prev.length === 1 && prev[0].type === 'ai') {
+                    return [{ id: 1, type: 'ai', text: chatData.welcomeMessage }];
+                }
+                return prev;
+            });
+        }
+    }, [chatData?.welcomeMessage]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -18,7 +30,7 @@ const AIChat = ({ hidden }) => {
         scrollToBottom();
     }, [messages, isTyping]);
 
-    const quickQuestions = [
+    const quickQuestions = chatData?.quickQuestions || [
         "What are your core skills?",
         "Tell me about your latest project",
         "How can I contact you?",
@@ -27,6 +39,18 @@ const AIChat = ({ hidden }) => {
 
     const getAIResponse = (input) => {
         const lowerInput = input.toLowerCase();
+
+        if (chatData?.qna && chatData.qna.length > 0) {
+            // Find matching keyword in Q&A
+            const match = chatData.qna.find(item => 
+                item.keyword !== 'default' && lowerInput.includes(item.keyword.toLowerCase())
+            );
+            if (match) return match.response;
+
+            // Fallback to default
+            const defaultMatch = chatData.qna.find(item => item.keyword === 'default');
+            if (defaultMatch) return defaultMatch.response;
+        }
 
         if (lowerInput.includes('skills')) {
             return "Abdullah excels in React, JavaScript, Responsive Design, and modern CSS techniques. He also has experience with Flutter and Firebase.";

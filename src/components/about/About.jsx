@@ -2,10 +2,9 @@ import "./about.css";
 import Info from "./Info";
 import GithubContribution from "./GithubContribution";
 import CVModal from "./CVModal";
-import AboutImage from "../../assets/profile.png";
 
-const About = ({ isCVModalOpen, setIsCVModalOpen }) => {
-  const cvUrl = "/Abdullah_Resume.pdf";
+const About = ({ about, isCVModalOpen, setIsCVModalOpen }) => {
+  const cvUrl = about?.resumeUrl || "/Abdullah_Resume.pdf";
 
   return (
     <section className="about section" id="about">
@@ -15,7 +14,7 @@ const About = ({ isCVModalOpen, setIsCVModalOpen }) => {
           <div className="about__sidebar">
             <div className="about__visual">
               <div className="about__img-container">
-                <img src={AboutImage} alt="Profile" className="about__img" />
+                <img src={about?.profileImg || "/profile.png"} alt="Profile" className="about__img" />
                 <div className="about__img-glow"></div>
               </div>
 
@@ -48,8 +47,11 @@ const About = ({ isCVModalOpen, setIsCVModalOpen }) => {
           {/* Right Column: Narrative & Dashboard */}
           <div className="about__main">
             <header className="about__header">
-              <span className="about__tag">The Architect</span>
-              <h2 className="about__title">Abdullah <span className="highlight">Afzal</span></h2>
+              <span className="about__tag">{about?.tag || "The Architect"}</span>
+              <h2 className="about__title">
+                {about?.titleName || "Abdullah"}{" "}
+                <span className="highlight">{about?.titleHighlight || "Afzal"}</span>
+              </h2>
               <div className="about__terminal">
                 <div className="terminal__header">
                   <div className="terminal__dots">
@@ -60,14 +62,11 @@ const About = ({ isCVModalOpen, setIsCVModalOpen }) => {
                 <div className="terminal__body">
                   <p className="terminal__line"><span className="prompt">$</span> whoami</p>
                   <p className="terminal__text">
-                    I am a Senior Software Engineer & System Design Engineer specializing 
-                    in architecting large-scale distributed systems, high-availability 
-                    infrastructure, and enterprise-grade platforms that serve millions.
+                    {about?.whoami || "I am a Senior Software Engineer..."}
                   </p>
                   <p className="terminal__line"><span className="prompt">$</span> cat philosophy.txt</p>
                   <p className="terminal__text">
-                    "Design systems that scale. Architect solutions that endure. 
-                    Engineer every layer — from infrastructure to interface."
+                    "{about?.philosophy || "Design systems that scale..."}"
                   </p>
                 </div>
               </div>
